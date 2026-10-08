@@ -1,0 +1,13 @@
+[workspace]
+authors = ["Jimmy Pritts <jbpritts@gmail.com>"]
+channels = ["conda-forge"]
+name = "vgt_tools"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+icons = "python make_icons.py"
+
+[dependencies]
+python = ">=3.12"
+pillow = ">=12.3.0,<13"
