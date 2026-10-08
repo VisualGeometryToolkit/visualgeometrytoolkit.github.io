@@ -1,0 +1,115 @@
+/* Palette after Documenter's documenter-light / documenter-dark themes and the
+   DocumenterLandingPage hero used by the project pages. */
+:root {
+  --bg: #ffffff;
+  --text: #222222;
+  --muted: #5f6b76;
+  --surface: #f5f7fa;
+  --border: #e0e4ea;
+  --accent: #2e63b8;
+  --accent-contrast: #ffffff;
+  --code-bg: #f5f5f5;
+  --name: linear-gradient(120deg, #2e63b8, #6d51b0 50%, #92418e);
+  --glow: linear-gradient(-45deg, #2e63b840 50%, #89459940 50%);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1f2424;
+    --text: #e6e9ea;
+    --muted: #9aa5a8;
+    --surface: #282f2f;
+    --border: #343c3d;
+    --accent: #1abc9c;
+    --accent-contrast: #00332a;
+    --code-bg: #2b3232;
+    --name: linear-gradient(120deg, #1abc9c, #00b7ce 50%, #51aaee);
+    --glow: linear-gradient(-45deg, #1abc9c40 50%, #38aee740 50%);
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+main { max-width: 72rem; margin: 0 auto; padding: 0 16px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+code, pre { font-family: "JuliaMono", ui-monospace, monospace; font-size: 0.85rem; }
+
+/* Hero: centred like the project pages */
+.hero { position: relative; text-align: center; padding: 4.5rem 0 3rem; }
+.glow {
+  position: absolute; z-index: -1; left: 50%; top: 45%;
+  width: min(28rem, 80vw); height: 10rem; transform: translate(-50%, -50%);
+  background: var(--glow); border-radius: 50%; filter: blur(50px);
+}
+.name {
+  margin: 0 auto 0.75rem; width: fit-content;
+  font-size: 3rem; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em;
+  background: var(--name); -webkit-background-clip: text; background-clip: text;
+  color: transparent; text-wrap: balance;
+}
+.tagline { margin: 0 auto 0.75rem; max-width: 40rem; font-size: 1.3rem; color: var(--text); text-wrap: balance; }
+.affil { margin: 0 0 1.75rem; color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+.btn {
+  display: inline-block; padding: 0.45rem 1.25rem; border-radius: 2rem;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  font-weight: 700;
+}
+.btn.brand { background: var(--accent); border-color: var(--accent); color: var(--accent-contrast); }
+.btn:hover { text-decoration: none; border-color: var(--accent); }
+
+section { padding: 2rem 0; }
+h2 { font-size: 1.6rem; margin: 0 0 0.5rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
+h3 { margin: 0; font-size: 1.05rem; }
+.lead { color: var(--muted); margin: 0 0 1.25rem; }
+
+/* Ecosystem graph */
+.graph { margin: 0; padding: 1rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); overflow-x: auto; }
+.graph pre.mermaid { margin: 0; background: none; text-align: center; font-family: inherit; }
+.graph pre.mermaid:not([data-processed]) { visibility: hidden; min-height: 30rem; }
+.graph svg { max-width: 100%; height: auto; }
+.graph .node.clickable, .graph a { cursor: pointer; }
+/* Image nodes: the icon tile is the node, so drop mermaid's box behind it,
+   and keep labels on the figure's own background in both themes. */
+.graph .image-shape > g:first-child path { stroke: none !important; fill: none !important; }
+.graph .labelBkg, .graph .nodeLabel p { background: transparent !important; }
+.graph a:hover .nodeLabel { text-decoration: underline; }
+@media (max-width: 760px) {
+  /* Keep the graph legible on phones: it scrolls inside its frame. */
+  .graph svg { max-width: none !important; width: 600px; }
+}
+
+/* Cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 1rem; }
+.card {
+  display: flex; flex-direction: column; gap: 0.5rem;
+  padding: 1.25rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);
+}
+.card img { width: 56px; height: 56px; }
+.card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.card .links { margin-top: auto; padding-top: 0.25rem; display: flex; gap: 1rem; flex-wrap: wrap; font-weight: 700; }
+.card .venue { color: var(--accent); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.card .authors { font-size: 0.9rem; }
+
+/* Get started */
+.usecases { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr)); gap: 1rem; }
+.usecase h3 { margin-bottom: 0.5rem; }
+.usecase pre { margin: 0; padding: 0.9rem 1rem; background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px; overflow-x: auto; }
+.note { color: var(--muted); font-size: 0.92rem; margin-top: 1.25rem; }
+.note code { background: var(--code-bg); padding: 0.1rem 0.3rem; border-radius: 4px; overflow-wrap: anywhere; }
+
+footer { border-top: 1px solid var(--border); margin-top: 2rem; padding: 1.5rem 16px; text-align: center; color: var(--muted); font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .hero { padding: 3rem 0 2rem; }
+  .name { font-size: 2.1rem; }
+  .tagline { font-size: 1.1rem; }
+}

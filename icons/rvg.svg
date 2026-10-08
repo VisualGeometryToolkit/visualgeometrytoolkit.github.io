@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img"><title>RobustVisualGeometry.jl</title><style>
+.t{fill:#eef3f9;stroke:#d3deea}
+.s{fill:none;stroke:#2b5d7d;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.a{fill:none;stroke:#d4622a;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.d{stroke-dasharray:1 7}
+.fs{fill:#2b5d7d}.fa{fill:#d4622a}
+.dk{display:none}
+@media (prefers-color-scheme: dark){
+.t{fill:#1c2830;stroke:#304350}
+.s{stroke:#9ccbe8}.a{stroke:#f28c52}
+.fs{fill:#9ccbe8}.fa{fill:#f28c52}
+.lt{display:none}.dk{display:inline}
+}
+</style><rect class="t" x="2" y="2" width="92" height="92" rx="20" stroke-width="2"/><path class="s" d="M12,75 L84,27"/><circle class="fs" cx="18" cy="70" r="3.6"/><circle class="fs" cx="27" cy="66" r="3.6"/><circle class="fs" cx="35" cy="59" r="3.6"/><circle class="fs" cx="44" cy="55" r="3.6"/><circle class="fs" cx="52" cy="47" r="3.6"/><circle class="fs" cx="61" cy="43" r="3.6"/><circle class="fs" cx="70" cy="35" r="3.6"/><circle class="fs" cx="78" cy="31" r="3.6"/><circle class="fa" cx="24" cy="30" r="3.6"/><circle class="fa" cx="44" cy="22" r="3.6"/><circle class="fa" cx="66" cy="70" r="3.6"/><circle class="fa" cx="82" cy="58" r="3.6"/><circle class="fa" cx="36" cy="84" r="3.6"/></svg>

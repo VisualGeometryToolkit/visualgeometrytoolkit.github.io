@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img"><title>PoseLib.jl</title><style>
+.t{fill:#eef3f9;stroke:#d3deea}
+.s{fill:none;stroke:#2b5d7d;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.a{fill:none;stroke:#d4622a;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.d{stroke-dasharray:1 7}
+.fs{fill:#2b5d7d}.fa{fill:#d4622a}
+.dk{display:none}
+@media (prefers-color-scheme: dark){
+.t{fill:#1c2830;stroke:#304350}
+.s{stroke:#9ccbe8}.a{stroke:#f28c52}
+.fs{fill:#9ccbe8}.fa{fill:#f28c52}
+.lt{display:none}.dk{display:inline}
+}
+</style><rect class="t" x="2" y="2" width="92" height="92" rx="20" stroke-width="2"/><path class="s" d="M16,38 L36,34 L40,50 L20,54 Z M18,68 L16,38 M18,68 L36,34 M18,68 L40,50 M18,68 L20,54"/><path class="s" d="M80,38 L60,34 L56,50 L76,54 Z M78,68 L80,38 M78,68 L60,34 M78,68 L56,50 M78,68 L76,54"/><path class="a d" d="M28,43 L48,16 L68,43"/><circle class="fa" cx="48" cy="16" r="4.5"/><path class="a" d="M24,80 Q48,92 72,80"/><path class="a" d="M66,83.2 L72,80 M68.8,85.1 L72,80 L66.0,79.8"/></svg>

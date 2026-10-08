@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Geometry Toolkit</title>
+<meta name="description" content="Julia packages for multi-view geometry: primitives, features, robust estimation, RANSAC scoring and evaluation.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Visual Geometry Toolkit">
+<meta property="og:description" content="Julia packages for multi-view geometry: primitives, features, robust estimation, RANSAC scoring and evaluation.">
+<meta property="og:url" content="https://visualgeometrytoolkit.github.io/">
+<link rel="canonical" href="https://visualgeometrytoolkit.github.io/">
+<link rel="icon" type="image/svg+xml" href="icons/vgc.svg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.63.2/juliamono.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+
+<header class="hero">
+  <div class="glow" aria-hidden="true"></div>
+  <h1 class="name">Visual Geometry Toolkit</h1>
+  <p class="tagline">Julia packages for multi-view geometry: primitives, features, robust estimation, RANSAC scoring and evaluation</p>
+  <p class="affil"><a href="https://www.marine-ai.de/">Marine Data Science</a> · <a href="https://www.uni-kiel.de/en/">Kiel University</a></p>
+  <nav class="actions">
+    <a class="btn brand" href="#get-started">Get started</a>
+    <a class="btn" href="#packages">Packages</a>
+    <a class="btn" href="#papers">Papers</a>
+    <a class="btn" href="https://github.com/VisualGeometryToolkit">GitHub</a>
+  </nav>
+</header>
+
+<section id="ecosystem">
+  <h2>Ecosystem</h2>
+  <p class="lead">Nine packages built on one core. An arrow points from a package to a package it depends on (indirect dependencies omitted); dashed nodes are the papers each package accompanies. Click a node to open it.</p>
+  <figure class="graph">
+    <pre class="mermaid" id="ecosystem-graph">
+flowchart TB
+    LODR@{ img: "icons/lodr.svg", label: "LocalOptimizationDoneRight.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+    BB@{ img: "icons/blobboards.svg", label: "BlobBoards.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+    VGEval@{ img: "icons/vgeval.svg", label: "VisualGeometryEval.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+    PL@{ img: "icons/poselib.svg", label: "PoseLib.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+    RVG@{ img: "icons/rvg.svg", label: "RobustVisualGeometry.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+    VGF@{ img: "icons/vgf.svg", label: "VisualGeometryFeatures.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+    RSDR@{ img: "icons/rsdr.svg", label: "RansacScoringDoneRight.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+    VGIo@{ img: "icons/vgio.svg", label: "VisualGeometryIo.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+    VGC@{ img: "icons/vgc.svg", label: "VisualGeometryCore.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+
+    P2(["ACCV 2026"])
+    P3(["BMVC 2026"])
+    P1(["NeurIPS 2026"])
+
+    P2 -.- LODR
+    P3 -.- BB
+    P1 -.- RSDR
+
+    LODR --> RVG
+    LODR --> VGEval
+    LODR --> PL
+    BB --> RVG
+    BB --> VGF
+    BB --> VGIo
+    VGEval --> VGIo
+    RVG --> RSDR
+    PL --> VGC
+    VGF --> VGC
+    RSDR --> VGC
+    VGIo --> VGC
+
+    classDef paper stroke-dasharray:4 3
+    class P1,P2,P3 paper
+
+    click VGC href "https://visualgeometrytoolkit.github.io/VisualGeometryCore.jl/" _blank
+    click VGIo href "https://github.com/VisualGeometryToolkit/VisualGeometryIo.jl" _blank
+    click VGF href "https://github.com/VisualGeometryToolkit/VisualGeometryFeatures.jl" _blank
+    click VGEval href "https://github.com/VisualGeometryToolkit/VisualGeometryEval.jl" _blank
+    click RSDR href "https://ransacscoringdoneright.github.io" _blank
+    click RVG href "https://visualgeometrytoolkit.github.io/RobustVisualGeometry.jl/" _blank
+    click PL href "https://github.com/VisualGeometryToolkit/PoseLib.jl" _blank
+    click LODR href "https://localoptimizationdoneright.github.io" _blank
+    click BB href "https://blobboards.github.io" _blank
+    click P1 href "https://arxiv.org/abs/2606.27385" _blank
+    click P2 href "https://arxiv.org/abs/2610.05743" _blank
+    click P3 href "https://arxiv.org/abs/2608.28830" _blank
+    </pre>
+  </figure>
+</section>
+
+<section id="packages">
+  <h2>Packages</h2>
+  <div class="cards">
+    <article class="card">
+      <img src="icons/vgc.svg" alt="" width="56" height="56">
+      <h3>VisualGeometryCore.jl</h3>
+      <p>Geometric primitives, transforms, camera models, coordinate frames and normalization, and the minimal solvers and robust-estimation building blocks the rest of the toolkit shares.</p>
+      <p class="links"><a href="https://visualgeometrytoolkit.github.io/VisualGeometryCore.jl/">Docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryCore.jl">GitHub</a></p>
+    </article>
+    <article class="card">
+      <img src="icons/vgio.svg" alt="" width="56" height="56">
+      <h3>VisualGeometryIo.jl</h3>
+      <p>Serialization for transforms and cameras: a COLMAP model reader and writer, and a small self-describing JSON schema for named rigid transforms with explicit units.</p>
+      <p class="links"><a href="https://github.com/VisualGeometryToolkit/VisualGeometryIo.jl">GitHub</a></p>
+    </article>
+    <article class="card">
+      <img src="icons/vgf.svg" alt="" width="56" height="56">
+      <h3>VisualGeometryFeatures.jl</h3>
+      <p>Feature detection, description and matching: ASIFT detection and nearest-neighbour matching in one KernelAbstractions implementation for the CPU and GPUs.</p>
+      <p class="links"><a href="https://github.com/VisualGeometryToolkit/VisualGeometryFeatures.jl">GitHub</a></p>
+    </article>
+    <article class="card">
+      <img src="icons/vgeval.svg" alt="" width="56" height="56">
+      <h3>VisualGeometryEval.jl</h3>
+      <p>The shared evaluation base: dataset readers, correspondence pools, statistics and bootstrap intervals, cross-validated tuning and the experiment framework.</p>
+      <p class="links"><a href="https://github.com/VisualGeometryToolkit/VisualGeometryEval.jl">GitHub</a></p>
+    </article>
+    <article class="card">
+      <img src="icons/rsdr.svg" alt="" width="56" height="56">
+      <h3>RansacScoringDoneRight.jl</h3>
+      <p>Scale-free marginal RANSAC scoring with CPU and GPU evaluators: rank hypotheses without knowing the inlier scale.</p>
+      <p class="links"><a href="https://ransacscoringdoneright.github.io">Project page</a><a href="https://github.com/VisualGeometryToolkit/RansacScoringDoneRight.jl">GitHub</a></p>
+    </article>
+    <article class="card">
+      <img src="icons/rvg.svg" alt="" width="56" height="56">
+      <h3>RobustVisualGeometry.jl</h3>
+      <p>Robust estimation for geometric vision: the RANSAC loop, local-optimization engines, and problems for lines, homographies, fundamental and essential matrices and absolute pose.</p>
+      <p class="links"><a href="https://visualgeometrytoolkit.github.io/RobustVisualGeometry.jl/">Docs</a><a href="https://github.com/VisualGeometryToolkit/RobustVisualGeometry.jl">GitHub</a></p>
+    </article>
+    <article class="card">
+      <img src="icons/poselib.svg" alt="" width="56" height="56">
+      <h3>PoseLib.jl</h3>
+      <p>Julia bindings to the <a href="https://github.com/PoseLib/PoseLib">PoseLib</a> C++ library: minimal solvers for relative and absolute pose, homographies and fundamental matrices, and its robust refiners.</p>
+      <p class="links"><a href="https://github.com/VisualGeometryToolkit/PoseLib.jl">GitHub</a></p>
+    </article>
+    <article class="card">
+      <img src="icons/lodr.svg" alt="" width="56" height="56">
+      <h3>LocalOptimizationDoneRight.jl</h3>
+      <p>The local-optimization evaluation engine: refit, score and compare LO strategies for essential, fundamental and homography estimation under one budget.</p>
+      <p class="links"><a href="https://localoptimizationdoneright.github.io">Project page</a><a href="https://github.com/VisualGeometryToolkit/LocalOptimizationDoneRight.jl">GitHub</a></p>
+    </article>
+    <article class="card">
+      <img src="icons/blobboards.svg" alt="" width="56" height="56">
+      <h3>BlobBoards.jl</h3>
+      <p>Blob marker boards: author printable boards, detect and identify them in images, and estimate their pose from hundreds of blob correspondences.</p>
+      <p class="links"><a href="https://blobboards.github.io">Project page</a><a href="https://github.com/VisualGeometryToolkit/BlobBoards.jl">GitHub</a></p>
+    </article>
+  </div>
+</section>
+
+<section id="get-started">
+  <h2>Get started</h2>
+  <p class="lead">There is no meta-package: add the package for what you want to do, and its dependencies come with it. The packages require Julia 1.12.</p>
+  <div class="usecases">
+    <div class="usecase">
+      <h3>Geometry primitives, cameras and transforms</h3>
+      <pre><code>using Pkg
+Pkg.add("VisualGeometryCore")</code></pre>
+    </div>
+    <div class="usecase">
+      <h3>Feature detection and matching</h3>
+      <pre><code>using Pkg
+Pkg.add("VisualGeometryFeatures")</code></pre>
+    </div>
+    <div class="usecase">
+      <h3>Robust estimation</h3>
+      <pre><code>using Pkg
+Pkg.add("RobustVisualGeometry")
+# brings VisualGeometryCore and RansacScoringDoneRight</code></pre>
+    </div>
+    <div class="usecase">
+      <h3>A paper's package</h3>
+      <pre><code>Pkg.add("RansacScoringDoneRight")      # NeurIPS 2026
+Pkg.add("LocalOptimizationDoneRight")  # ACCV 2026
+Pkg.add("BlobBoards")                  # BMVC 2026</code></pre>
+    </div>
+  </div>
+  <p class="note">The packages are being registered in the Julia General registry. Until a package is registered, add it from its GitHub repository: <code>Pkg.add(url = "https://github.com/VisualGeometryToolkit/&lt;Name&gt;.jl")</code>.</p>
+</section>
+
+<section id="papers">
+  <h2>Papers</h2>
+  <div class="cards papers">
+    <article class="card paper">
+      <img src="icons/rsdr.svg" alt="" width="56" height="56">
+      <p class="venue">NeurIPS 2026</p>
+      <h3>RANSAC Scoring Done Right</h3>
+      <p class="authors">James Pritts, Felix Seegräber, Kevin Köser</p>
+      <p class="links"><a href="https://arxiv.org/abs/2606.27385">arXiv</a><a href="https://ransacscoringdoneright.github.io">Project page</a></p>
+    </article>
+    <article class="card paper">
+      <img src="icons/lodr.svg" alt="" width="56" height="56">
+      <p class="venue">ACCV 2026</p>
+      <h3>Robust Local Optimization Done Right</h3>
+      <p class="authors">James Pritts, Kevin Köser</p>
+      <p class="links"><a href="https://arxiv.org/abs/2610.05743">arXiv</a><a href="https://localoptimizationdoneright.github.io">Project page</a></p>
+    </article>
+    <article class="card paper">
+      <img src="icons/blobboards.svg" alt="" width="56" height="56">
+      <p class="venue">BMVC 2026</p>
+      <h3>BlobBoards: Robust Markers for Accurate Pose</h3>
+      <p class="authors">James Pritts, Till Sittart, Hendrik Sauer, Silja Janßen, Felix Seegräber, David Nakath, Kevin Köser</p>
+      <p class="links"><a href="https://arxiv.org/abs/2608.28830">arXiv</a><a href="https://blobboards.github.io">Project page</a></p>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>All packages are MIT licensed · © Kiel University · <a href="https://github.com/VisualGeometryToolkit">github.com/VisualGeometryToolkit</a></p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/mermaid.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

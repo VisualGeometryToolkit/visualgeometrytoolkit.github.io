@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img"><title>VisualGeometryCore.jl</title><style>
+.t{fill:#eef3f9;stroke:#d3deea}
+.s{fill:none;stroke:#2b5d7d;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.a{fill:none;stroke:#d4622a;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.d{stroke-dasharray:1 7}
+.fs{fill:#2b5d7d}.fa{fill:#d4622a}
+.dk{display:none}
+@media (prefers-color-scheme: dark){
+.t{fill:#1c2830;stroke:#304350}
+.s{stroke:#9ccbe8}.a{stroke:#f28c52}
+.fs{fill:#9ccbe8}.fa{fill:#f28c52}
+.lt{display:none}.dk{display:inline}
+}
+</style><rect class="t" x="2" y="2" width="92" height="92" rx="20" stroke-width="2"/><path class="s" d="M50,16 L82,24 L78,52 L46,44 Z M32,62 L50,16 M32,62 L82,24 M32,62 L78,52 M32,62 L46,44"/><path class="a" d="M32,62 L32,86 M29.0,80.8 L32,86 L35.0,80.8"/><path class="a" d="M32,62 L10,62 M15.2,59.0 L10,62 L15.2,65.0"/></svg>
