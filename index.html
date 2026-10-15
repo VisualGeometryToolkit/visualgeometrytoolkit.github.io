@@ -34,40 +34,41 @@
 
 <section id="ecosystem">
   <h2>Ecosystem</h2>
-  <p class="lead">Nine packages built on one core. An arrow points from a package to a package it depends on (indirect dependencies omitted); dashed nodes are the papers each package accompanies. Click a node to open it.</p>
+  <p class="lead">Nine packages built on one core. Each package builds on the ones above it (direct dependencies; edges implied through another package are omitted). Dashed: optional (package extension); dashed nodes are the papers each package accompanies. Click a node to open it.</p>
   <figure class="graph">
     <pre class="mermaid" id="ecosystem-graph">
 flowchart TB
-    LODR@{ img: "icons/lodr.svg", label: "LocalOptimizationDoneRight.jl", pos: "b", w: 72, h: 72, constraint: "on" }
-    BB@{ img: "icons/blobboards.svg", label: "BlobBoards.jl", pos: "b", w: 72, h: 72, constraint: "on" }
-    VGEval@{ img: "icons/vgeval.svg", label: "VisualGeometryEval.jl", pos: "b", w: 72, h: 72, constraint: "on" }
-    PL@{ img: "icons/poselib.svg", label: "PoseLib.jl", pos: "b", w: 72, h: 72, constraint: "on" }
-    RVG@{ img: "icons/rvg.svg", label: "RobustVisualGeometry.jl", pos: "b", w: 72, h: 72, constraint: "on" }
-    VGF@{ img: "icons/vgf.svg", label: "VisualGeometryFeatures.jl", pos: "b", w: 72, h: 72, constraint: "on" }
-    RSDR@{ img: "icons/rsdr.svg", label: "RansacScoringDoneRight.jl", pos: "b", w: 72, h: 72, constraint: "on" }
-    VGIo@{ img: "icons/vgio.svg", label: "VisualGeometryIo.jl", pos: "b", w: 72, h: 72, constraint: "on" }
     VGC@{ img: "icons/vgc.svg", label: "VisualGeometryCore.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+    VGF@{ img: "icons/vgf.svg", label: "VisualGeometryFeatures.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+    VGIo@{ img: "icons/vgio.svg", label: "VisualGeometryIo.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+    RVG@{ img: "icons/rvg.svg", label: "RobustVisualGeometry.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+    PL@{ img: "icons/poselib.svg", label: "PoseLib.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+    RSDR@{ img: "icons/rsdr.svg", label: "RansacScoringDoneRight.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+    LODR@{ img: "icons/lodr.svg", label: "LocalOptimizationDoneRight.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+    VGEval@{ img: "icons/vgeval.svg", label: "VisualGeometryEval.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+    BB@{ img: "icons/blobboards.svg", label: "BlobBoards.jl", pos: "b", w: 72, h: 72, constraint: "on" }
 
+    VGC --> VGF
+    VGC --> VGIo
+    VGC --> RVG
+    VGC --> PL
+    VGC --> RSDR
+    VGIo --> VGEval
+    RVG --> VGEval
+    RVG --> LODR
+    PL -.-> LODR
+    VGF --> BB
+    VGIo --> BB
+    RSDR --> BB
+    LODR --> BB
+
+    P1(["NeurIPS 2026"])
     P2(["ACCV 2026"])
     P3(["BMVC 2026"])
-    P1(["NeurIPS 2026"])
 
-    P2 -.- LODR
-    P3 -.- BB
-    P1 -.- RSDR
-
-    LODR --> RVG
-    LODR --> VGEval
-    LODR --> PL
-    BB --> RVG
-    BB --> VGF
-    BB --> VGIo
-    VGEval --> VGIo
-    RVG --> RSDR
-    PL --> VGC
-    VGF --> VGC
-    RSDR --> VGC
-    VGIo --> VGC
+    RSDR -.- P1
+    LODR -.- P2
+    BB -.- P3
 
     classDef paper stroke-dasharray:4 3
     class P1,P2,P3 paper
