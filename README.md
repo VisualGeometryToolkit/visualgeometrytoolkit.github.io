@@ -3,8 +3,8 @@
 The landing page of the [Visual Geometry Toolkit](https://visualgeometrytoolkit.github.io):
 Julia packages for multi-view geometry from Marine Data Science, Kiel University.
 
-Plain static HTML, CSS and JavaScript with no build step; GitHub Pages serves
-`main` as is. The ecosystem graph is rendered in the browser by a pinned
+The landing page is plain static HTML, CSS and JavaScript; the Portal workflow
+places it at the root of the published site (see below). The ecosystem graph is rendered in the browser by a pinned
 [mermaid](https://mermaid.js.org) release, and the package icons in `icons/`
 are self-contained SVGs that switch between light and dark colours with
 `prefers-color-scheme`.
@@ -24,3 +24,14 @@ recorded beside it in `docs/hero_board.json`).
 
     cd tools
     pixi run icons        # pixi.toml + pixi.lock pin Python and Pillow
+
+## Package documentation
+
+`.github/workflows/portal.yml` builds the published site: this landing page at
+the root, plus the per-package Documenter sites aggregated by MultiDocumenter
+(`portal/make.jl`) under `/<Package>/` — the six monorepo packages from
+VisualGeometryToolkit.jl's `gh-pages`, and RansacScoringDoneRight,
+LocalOptimizationDoneRight and BlobBoards from their own `gh-pages` once those
+exist. It runs on push, nightly, by hand, and on the `docs-updated`
+repository_dispatch from the monorepo's Docs workflow. Pages is served from
+the workflow (source: GitHub Actions), not from `main`.

@@ -21,6 +21,7 @@
 <header class="hero">
   <div class="glow" aria-hidden="true"></div>
   <h1 class="name">Visual Geometry Toolkit</h1>
+  <p class="byline">by <a href="https://prittjam.github.io/">James Pritts</a></p>
   <p class="tagline">Julia packages for multi-view geometry: primitives, features, robust estimation, RANSAC scoring and evaluation</p>
   <p class="affil"><a href="https://www.marine-ai.de/">Marine Data Science</a> · <a href="https://www.uni-kiel.de/en/">Kiel University</a></p>
   <nav class="actions">
@@ -71,13 +72,13 @@ flowchart TB
     classDef paper stroke-dasharray:4 3
     class P1,P2,P3 paper
 
-    click VGC href "https://visualgeometrytoolkit.github.io/VisualGeometryCore.jl/" _blank
-    click VGIo href "https://github.com/VisualGeometryToolkit/VisualGeometryIo.jl" _blank
-    click VGF href "https://github.com/VisualGeometryToolkit/VisualGeometryFeatures.jl" _blank
-    click VGEval href "https://github.com/VisualGeometryToolkit/VisualGeometryEval.jl" _blank
+    click VGC href "VisualGeometryCore/" _blank
+    click VGIo href "VisualGeometryIo/" _blank
+    click VGF href "VisualGeometryFeatures/" _blank
+    click VGEval href "VisualGeometryEval/" _blank
     click RSDR href "https://ransacscoringdoneright.github.io" _blank
-    click RVG href "https://visualgeometrytoolkit.github.io/RobustVisualGeometry.jl/" _blank
-    click PL href "https://github.com/VisualGeometryToolkit/PoseLib.jl" _blank
+    click RVG href "RobustVisualGeometry/" _blank
+    click PL href "PoseLib/" _blank
     click LODR href "https://localoptimizationdoneright.github.io" _blank
     click BB href "https://blobboards.github.io" _blank
     click P1 href "https://arxiv.org/abs/2606.27385" _blank
@@ -94,49 +95,49 @@ flowchart TB
       <img src="icons/vgc.svg" alt="" width="56" height="56">
       <h3>VisualGeometryCore.jl</h3>
       <p>Geometric primitives, transforms, camera models, coordinate frames and normalization, and the minimal solvers and robust-estimation building blocks the rest of the toolkit shares.</p>
-      <p class="links"><a href="https://visualgeometrytoolkit.github.io/VisualGeometryCore.jl/">Docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryCore.jl">GitHub</a></p>
+      <p class="links"><a href="VisualGeometryCore/">Docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryCore">GitHub</a></p>
     </article>
     <article class="card">
       <img src="icons/vgio.svg" alt="" width="56" height="56">
       <h3>VisualGeometryIo.jl</h3>
       <p>Serialization for transforms and cameras: a COLMAP model reader and writer, and a small self-describing JSON schema for named rigid transforms with explicit units.</p>
-      <p class="links"><a href="https://github.com/VisualGeometryToolkit/VisualGeometryIo.jl">GitHub</a></p>
+      <p class="links"><a href="VisualGeometryIo/">Docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryIo">GitHub</a></p>
     </article>
     <article class="card">
       <img src="icons/vgf.svg" alt="" width="56" height="56">
       <h3>VisualGeometryFeatures.jl</h3>
       <p>Feature detection, description and matching: ASIFT detection and nearest-neighbour matching in one KernelAbstractions implementation for the CPU and GPUs.</p>
-      <p class="links"><a href="https://github.com/VisualGeometryToolkit/VisualGeometryFeatures.jl">GitHub</a></p>
+      <p class="links"><a href="VisualGeometryFeatures/">Docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryFeatures">GitHub</a></p>
     </article>
     <article class="card">
       <img src="icons/vgeval.svg" alt="" width="56" height="56">
       <h3>VisualGeometryEval.jl</h3>
       <p>The shared evaluation base: dataset readers, correspondence pools, statistics and bootstrap intervals, cross-validated tuning and the experiment framework.</p>
-      <p class="links"><a href="https://github.com/VisualGeometryToolkit/VisualGeometryEval.jl">GitHub</a></p>
+      <p class="links"><a href="VisualGeometryEval/">Docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryEval">GitHub</a></p>
     </article>
     <article class="card">
       <img src="icons/rsdr.svg" alt="" width="56" height="56">
       <h3>RansacScoringDoneRight.jl</h3>
       <p>Scale-free marginal RANSAC scoring with CPU and GPU evaluators: rank hypotheses without knowing the inlier scale.</p>
-      <p class="links"><a href="https://ransacscoringdoneright.github.io">Project page</a><a href="https://github.com/VisualGeometryToolkit/RansacScoringDoneRight.jl">GitHub</a></p>
+      <p class="links"><a href="https://ransacscoringdoneright.github.io">Project page</a><a href="RansacScoringDoneRight/">Docs</a><a href="https://github.com/VisualGeometryToolkit/RansacScoringDoneRight.jl">GitHub</a></p>
     </article>
     <article class="card">
       <img src="icons/rvg.svg" alt="" width="56" height="56">
       <h3>RobustVisualGeometry.jl</h3>
       <p>Robust estimation for geometric vision: the RANSAC loop, local-optimization engines, and problems for lines, homographies, fundamental and essential matrices and absolute pose.</p>
-      <p class="links"><a href="https://visualgeometrytoolkit.github.io/RobustVisualGeometry.jl/">Docs</a><a href="https://github.com/VisualGeometryToolkit/RobustVisualGeometry.jl">GitHub</a></p>
+      <p class="links"><a href="RobustVisualGeometry/">Docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/RobustVisualGeometry">GitHub</a></p>
     </article>
     <article class="card">
       <img src="icons/poselib.svg" alt="" width="56" height="56">
       <h3>PoseLib.jl</h3>
       <p>Julia bindings to the <a href="https://github.com/PoseLib/PoseLib">PoseLib</a> C++ library: minimal solvers for relative and absolute pose, homographies and fundamental matrices, and its robust refiners.</p>
-      <p class="links"><a href="https://github.com/VisualGeometryToolkit/PoseLib.jl">GitHub</a></p>
+      <p class="links"><a href="PoseLib/">Docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/PoseLib">GitHub</a></p>
     </article>
     <article class="card">
       <img src="icons/lodr.svg" alt="" width="56" height="56">
       <h3>LocalOptimizationDoneRight.jl</h3>
       <p>The local-optimization evaluation engine: refit, score and compare LO strategies for essential, fundamental and homography estimation under one budget.</p>
-      <p class="links"><a href="https://localoptimizationdoneright.github.io">Project page</a><a href="https://github.com/VisualGeometryToolkit/LocalOptimizationDoneRight.jl">GitHub</a></p>
+      <p class="links"><a href="https://localoptimizationdoneright.github.io">Project page</a><a href="LocalOptimizationDoneRight/">Docs</a><a href="https://github.com/VisualGeometryToolkit/LocalOptimizationDoneRight.jl">GitHub</a></p>
     </article>
     <article class="card">
       <img src="icons/blobboards.svg" alt="" width="56" height="56">
@@ -174,7 +175,7 @@ Pkg.add("LocalOptimizationDoneRight")  # ACCV 2026
 Pkg.add("BlobBoards")                  # BMVC 2026</code></pre>
     </div>
   </div>
-  <p class="note">The packages are being registered in the Julia General registry. Until a package is registered, add it from its GitHub repository: <code>Pkg.add(url = "https://github.com/VisualGeometryToolkit/&lt;Name&gt;.jl")</code>.</p>
+  <p class="note">The packages are registered in <a href="https://github.com/prittjam/CauRegistry.jl">CauRegistry</a> and submitted to the Julia General registry. Until they are in General, add both registries once: <code>Pkg.Registry.add("General"); Pkg.Registry.add(url = "https://github.com/prittjam/CauRegistry.jl")</code>.</p>
 </section>
 
 <section id="papers">

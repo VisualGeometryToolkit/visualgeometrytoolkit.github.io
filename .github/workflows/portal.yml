@@ -1,0 +1,48 @@
+# Builds the site: the hand-written landing page at the root plus the
+# MultiDocumenter aggregate of the package docs under /<Package>/ (from the
+# monorepo's gh-pages and the separate repositories' gh-pages), and deploys it
+# to GitHub Pages. Runs on push, nightly, by hand, and on the `docs-updated`
+# repository_dispatch the monorepo's Docs workflow sends.
+name: Portal
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 3 * * *'
+  repository_dispatch:
+    types: [docs-updated]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with: { version: '1.12' }
+      - uses: julia-actions/cache@v2
+      - run: julia --project=portal -e 'using Pkg; Pkg.instantiate()'
+      - run: julia --project=portal --startup-file=no portal/make.jl
+        env:
+          PORTAL_OUT: ${{ runner.temp }}/site
+      - name: Landing page over the root redirect
+        run: |
+          cp -r index.html style.css main.js icons .nojekyll "$RUNNER_TEMP/site/"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
