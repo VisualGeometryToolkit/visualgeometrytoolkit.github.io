@@ -1,6 +1,7 @@
 # Builds the site: the hand-written landing page at the root plus the
-# MultiDocumenter aggregate of the package docs under /<Package>/ (from the
-# monorepo's gh-pages and the separate projects' organization pages), and deploys it
+# MultiDocumenter aggregate of the workspace packages' docs under /<Package>/
+# (from the monorepo's gh-pages; the separate projects are navbar links to their
+# own sites, with redirect pages at their old /<Project>/ paths), and deploys it
 # to GitHub Pages. Runs on push, nightly, by hand, and on the `docs-updated`
 # repository_dispatch the monorepo's Docs workflow sends.
 name: Portal
