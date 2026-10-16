@@ -22,7 +22,11 @@ using MultiDocumenter
 const MONOREPO = "https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl.git"
 const WORKSPACE = ["VisualGeometryCore", "VisualGeometryIo", "VisualGeometryFeatures",
     "RobustVisualGeometry", "VisualGeometryEval", "PoseLib"]
+# The separate projects publish their docs to their organization pages
+# (<project>.github.io, the `main` branch of <org>/<org>.github.io); the portal
+# mirrors those, and keeps their canonical URLs pointing at the project pages.
 const EXTERNAL = ["RansacScoringDoneRight", "LocalOptimizationDoneRight", "BlobBoards"]
+site_repo(p) = (o = lowercase(p); "https://github.com/$o/$o.github.io.git")
 
 pages = get(ENV, "PORTAL_LOCAL", "")
 if isempty(pages)
@@ -36,15 +40,14 @@ for p in WORKSPACE
     push!(docs, MultiDocumenter.MultiDocRef(; upstream = joinpath(pages, p), path = p, name = p))
 end
 clonedir = mktempdir()
-# A separate repository joins once it is public and has a gh-pages branch.
-has_pages(url) = success(pipeline(`git ls-remote --exit-code --heads $url gh-pages`; stdout = devnull, stderr = devnull))
+# A project joins once its organization page has a Documenter build on `main`.
+has_site(url) = success(pipeline(`git ls-remote --exit-code --heads $url main`; stdout = devnull, stderr = devnull))
 if get(ENV, "PORTAL_NO_EXTERNAL", "") != "1"
     for p in EXTERNAL
-        has_pages("https://github.com/VisualGeometryToolkit/$p.jl.git") ||
-            (@warn "no gh-pages for $p yet"; continue)
+        has_site(site_repo(p)) || (@warn "no site for $p yet"; continue)
         push!(docs, MultiDocumenter.MultiDocRef(;
             upstream = joinpath(clonedir, p), path = p, name = p,
-            giturl = "https://github.com/VisualGeometryToolkit/$p.jl.git"))
+            giturl = site_repo(p), branch = "main", fix_canonical_url = false))
     end
 end
 
