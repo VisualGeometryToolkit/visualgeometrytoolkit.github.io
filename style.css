@@ -6,6 +6,7 @@
   --muted: #5f6b76;
   --surface: #f5f7fa;
   --border: #e0e4ea;
+  --border-strong: #b8c3cf;
   --accent: #2e63b8;
   --accent-contrast: #ffffff;
   --code-bg: #f5f5f5;
@@ -19,6 +20,7 @@
     --muted: #9aa5a8;
     --surface: #282f2f;
     --border: #343c3d;
+    --border-strong: #4b5657;
     --accent: #1abc9c;
     --accent-contrast: #00332a;
     --code-bg: #2b3232;
@@ -79,27 +81,55 @@ h3 { margin: 0; font-size: 1.05rem; }
 .graph pre.mermaid:not([data-processed]) { visibility: hidden; min-height: 30rem; }
 .graph svg { max-width: 100%; height: auto; }
 .graph .node.clickable, .graph a { cursor: pointer; }
-/* Image nodes: the icon tile is the node, so drop mermaid's box behind it,
-   and keep labels on the figure's own background in both themes. */
-.graph .image-shape > g:first-child path { stroke: none !important; fill: none !important; }
+/* Nodes: compact boxes on the page background, icon beside the name,
+   following the colour scheme rather than mermaid's theme. */
+.graph .node rect { rx: 6px; ry: 6px; fill: var(--bg) !important; stroke: var(--border-strong) !important; stroke-width: 1px !important; }
+.graph .nodeLabel { display: inline-flex !important; align-items: center; gap: 8px; color: var(--text) !important; font-weight: 700; }
+.graph .nodeLabel p { display: inline-flex; align-items: center; gap: 8px; margin: 0; }
+.graph .nicon { display: block !important; width: 24px !important; height: 24px; flex: none !important; }
 .graph .labelBkg, .graph .nodeLabel p { background: transparent !important; }
-.graph a:hover .nodeLabel { text-decoration: underline; }
+.graph a:hover .node rect, .graph .node.clickable:hover rect { stroke: var(--accent) !important; }
+/* Paper pills: dashed, venue in the accent colour */
+.graph .node.paper rect, .graph .node.paper path { fill: none !important; stroke: var(--accent) !important; stroke-dasharray: 4 3; }
+.graph .node.paper .nodeLabel { color: var(--accent) !important; font-weight: 700; font-size: 0.9em; }
 @media (max-width: 760px) {
   /* Keep the graph legible on phones: it scrolls inside its frame. */
-  .graph svg { max-width: none !important; width: 600px; }
+  .graph svg { max-width: none !important; width: 760px; }
 }
 
 /* Cards */
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 1rem; }
 .card {
-  display: flex; flex-direction: column; gap: 0.5rem;
-  padding: 1.25rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface);
 }
-.card img { width: 56px; height: 56px; }
-.card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
-.card .links { margin-top: auto; padding-top: 0.25rem; display: flex; gap: 1rem; flex-wrap: wrap; font-weight: 700; }
+.card img { width: 56px; height: 56px; display: block; margin-bottom: 4px; }
+.card h3 { font-size: 1.2rem; font-weight: 600; }
+.card p { margin: 0; color: var(--muted); font-size: 0.93rem; }
+.card .links { margin-top: auto; padding-top: 6px; display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.9rem; font-weight: 600; }
 .card .venue { color: var(--accent); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; }
 .card .authors { font-size: 0.9rem; }
+
+/* BibTeX: a native toggle among the links; the entry opens below them */
+.card details.bibtex { display: contents; }
+.card details.bibtex > summary { list-style: none; color: var(--accent); cursor: pointer; }
+.card details.bibtex > summary::-webkit-details-marker { display: none; }
+.card details.bibtex > summary:focus-visible, .copy-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.reveal {
+  position: relative; flex-basis: 100%;
+  padding: 10px 12px; background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px;
+  font-weight: 400;
+}
+.reveal pre { margin: 0; padding-right: 30px; font-size: 0.75rem; line-height: 1.5; color: var(--text); white-space: pre-wrap; overflow-wrap: anywhere; }
+.copy-btn {
+  position: absolute; top: 8px; right: 8px;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; padding: 0; cursor: pointer;
+  color: var(--muted); background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+}
+.copy-btn:hover, .copy-btn[data-state="copied"] { color: var(--accent); border-color: var(--accent); }
+.copy-btn .icon-done, .copy-btn[data-state="copied"] .icon-copy { display: none; }
+.copy-btn[data-state="copied"] .icon-done { display: block; }
 
 /* Get started */
 .usecases { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr)); gap: 1rem; }

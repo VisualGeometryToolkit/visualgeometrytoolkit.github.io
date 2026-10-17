@@ -30,26 +30,26 @@
   <nav class="actions">
     <a class="btn brand" href="#get-started">Get started</a>
     <a class="btn" href="#packages">Packages</a>
-    <a class="btn" href="#papers">Papers</a>
+    <a class="btn" href="#publications">Publications</a>
     <a class="btn" href="https://github.com/VisualGeometryToolkit">GitHub</a>
   </nav>
 </header>
 
 <section id="ecosystem">
   <h2>Ecosystem</h2>
-  <p class="lead">Nine packages built on one core. Each package builds on the ones above it (direct dependencies; edges implied through another package are omitted). Dashed: optional (package extension); dashed nodes are the papers each package accompanies. Click a node to open it.</p>
+  <p class="lead">Nine packages built on one core. Each package builds on the ones above it (direct dependencies; edges implied through another package are omitted). A dashed arrow is an optional dependency (package extension); the dashed pills are the papers the packages accompany. Click a node to open it.</p>
   <figure class="graph">
     <pre class="mermaid" id="ecosystem-graph">
-flowchart TB
-    VGC@{ img: "icons/vgc.svg", label: "VisualGeometryCore.jl", pos: "b", w: 72, h: 72, constraint: "on" }
-    VGF@{ img: "icons/vgf.svg", label: "VisualGeometryFeatures.jl", pos: "b", w: 72, h: 72, constraint: "on" }
-    VGIo@{ img: "icons/vgio.svg", label: "VisualGeometryIo.jl", pos: "b", w: 72, h: 72, constraint: "on" }
-    RVG@{ img: "icons/rvg.svg", label: "RobustVisualGeometry.jl", pos: "b", w: 72, h: 72, constraint: "on" }
-    PL@{ img: "icons/poselib.svg", label: "PoseLib.jl", pos: "b", w: 72, h: 72, constraint: "on" }
-    RSDR@{ img: "icons/rsdr.svg", label: "RansacScoringDoneRight.jl", pos: "b", w: 72, h: 72, constraint: "on" }
-    LODR@{ img: "icons/lodr.svg", label: "LocalOptimizationDoneRight.jl", pos: "b", w: 72, h: 72, constraint: "on" }
-    VGEval@{ img: "icons/vgeval.svg", label: "VisualGeometryEval.jl", pos: "b", w: 72, h: 72, constraint: "on" }
-    BB@{ img: "icons/blobboards.svg", label: "BlobBoards.jl", pos: "b", w: 72, h: 72, constraint: "on" }
+flowchart TD
+    VGC["&lt;img class='nicon' src='icons/vgc.svg' width='24' height='24'&gt;VisualGeometryCore"]
+    VGF["&lt;img class='nicon' src='icons/vgf.svg' width='24' height='24'&gt;VisualGeometryFeatures"]
+    VGIo["&lt;img class='nicon' src='icons/vgio.svg' width='24' height='24'&gt;VisualGeometryIo"]
+    RVG["&lt;img class='nicon' src='icons/rvg.svg' width='24' height='24'&gt;RobustVisualGeometry"]
+    PL["&lt;img class='nicon' src='icons/poselib.svg' width='24' height='24'&gt;PoseLib"]
+    RSDR["&lt;img class='nicon' src='icons/rsdr.svg' width='24' height='24'&gt;RansacScoringDoneRight"]
+    LODR["&lt;img class='nicon' src='icons/lodr.svg' width='24' height='24'&gt;LocalOptimizationDoneRight"]
+    VGEval["&lt;img class='nicon' src='icons/vgeval.svg' width='24' height='24'&gt;VisualGeometryEval"]
+    BB["&lt;img class='nicon' src='icons/blobboards.svg' width='24' height='24'&gt;BlobBoards"]
 
     VGC --> VGF
     VGC --> VGIo
@@ -73,7 +73,6 @@ flowchart TB
     LODR -.- P2
     BB -.- P3
 
-    classDef paper stroke-dasharray:4 3
     class P1,P2,P3 paper
 
     click VGC href "VisualGeometryCore/" _blank
@@ -85,9 +84,9 @@ flowchart TB
     click PL href "PoseLib/" _blank
     click LODR href "https://localoptimizationdoneright.github.io" _blank
     click BB href "https://blobboards.github.io" _blank
-    click P1 href "https://arxiv.org/abs/2606.27385" _blank
-    click P2 href "https://arxiv.org/abs/2610.05743" _blank
-    click P3 href "https://arxiv.org/abs/2608.28830" _blank
+    click P1 href "https://arxiv.org/pdf/2606.27385" _blank
+    click P2 href "https://arxiv.org/pdf/2610.05743" _blank
+    click P3 href "https://arxiv.org/pdf/2608.28830" _blank
     </pre>
   </figure>
 </section>
@@ -99,55 +98,55 @@ flowchart TB
       <img src="icons/vgc.svg" alt="" width="56" height="56">
       <h3>VisualGeometryCore.jl</h3>
       <p>Geometric primitives, transforms, camera models, coordinate frames and normalization, and the minimal solvers and robust-estimation building blocks the rest of the toolkit shares.</p>
-      <p class="links"><a href="VisualGeometryCore/">Docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryCore">GitHub</a></p>
+      <p class="links"><a href="VisualGeometryCore/">docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryCore">code</a></p>
     </article>
     <article class="card">
       <img src="icons/vgio.svg" alt="" width="56" height="56">
       <h3>VisualGeometryIo.jl</h3>
       <p>Serialization for transforms and cameras: a COLMAP model reader and writer, and a small self-describing JSON schema for named rigid transforms with explicit units.</p>
-      <p class="links"><a href="VisualGeometryIo/">Docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryIo">GitHub</a></p>
+      <p class="links"><a href="VisualGeometryIo/">docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryIo">code</a></p>
     </article>
     <article class="card">
       <img src="icons/vgf.svg" alt="" width="56" height="56">
       <h3>VisualGeometryFeatures.jl</h3>
       <p>Feature detection, description and matching: ASIFT detection and nearest-neighbour matching in one KernelAbstractions implementation for the CPU and GPUs.</p>
-      <p class="links"><a href="VisualGeometryFeatures/">Docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryFeatures">GitHub</a></p>
+      <p class="links"><a href="VisualGeometryFeatures/">docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryFeatures">code</a></p>
     </article>
     <article class="card">
       <img src="icons/vgeval.svg" alt="" width="56" height="56">
       <h3>VisualGeometryEval.jl</h3>
       <p>The shared evaluation base: dataset readers, correspondence pools, statistics and bootstrap intervals, cross-validated tuning and the experiment framework.</p>
-      <p class="links"><a href="VisualGeometryEval/">Docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryEval">GitHub</a></p>
+      <p class="links"><a href="VisualGeometryEval/">docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryEval">code</a></p>
     </article>
     <article class="card">
       <img src="icons/rsdr.svg" alt="" width="56" height="56">
       <h3>RansacScoringDoneRight.jl</h3>
       <p>Scale-free marginal RANSAC scoring with CPU and GPU evaluators: rank hypotheses without knowing the inlier scale.</p>
-      <p class="links"><a href="https://ransacscoringdoneright.github.io">Project page</a></p>
+      <p class="links"><a href="https://ransacscoringdoneright.github.io">project</a></p>
     </article>
     <article class="card">
       <img src="icons/rvg.svg" alt="" width="56" height="56">
       <h3>RobustVisualGeometry.jl</h3>
       <p>Robust estimation for geometric vision: the RANSAC loop, local-optimization engines, and problems for lines, homographies, fundamental and essential matrices and absolute pose.</p>
-      <p class="links"><a href="RobustVisualGeometry/">Docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/RobustVisualGeometry">GitHub</a></p>
+      <p class="links"><a href="RobustVisualGeometry/">docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/RobustVisualGeometry">code</a></p>
     </article>
     <article class="card">
       <img src="icons/poselib.svg" alt="" width="56" height="56">
       <h3>PoseLib.jl</h3>
       <p>Julia bindings to the <a href="https://github.com/PoseLib/PoseLib">PoseLib</a> C++ library: minimal solvers for relative and absolute pose, homographies and fundamental matrices, and its robust refiners.</p>
-      <p class="links"><a href="PoseLib/">Docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/PoseLib">GitHub</a></p>
+      <p class="links"><a href="PoseLib/">docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/PoseLib">code</a></p>
     </article>
     <article class="card">
       <img src="icons/lodr.svg" alt="" width="56" height="56">
       <h3>LocalOptimizationDoneRight.jl</h3>
       <p>The local-optimization evaluation engine: refit, score and compare LO strategies for essential, fundamental and homography estimation under one budget.</p>
-      <p class="links"><a href="https://localoptimizationdoneright.github.io">Project page</a></p>
+      <p class="links"><a href="https://localoptimizationdoneright.github.io">project</a></p>
     </article>
     <article class="card">
       <img src="icons/blobboards.svg" alt="" width="56" height="56">
       <h3>BlobBoards.jl</h3>
       <p>Blob marker boards: author printable boards, detect and identify them in images, and estimate their pose from hundreds of blob correspondences.</p>
-      <p class="links"><a href="https://blobboards.github.io">Project page</a></p>
+      <p class="links"><a href="https://blobboards.github.io">project</a></p>
     </article>
   </div>
 </section>
@@ -182,29 +181,48 @@ Pkg.add("BlobBoards")                  # BMVC 2026</code></pre>
   <p class="note">The packages are registered in <a href="https://github.com/prittjam/CauRegistry.jl">CauRegistry</a> and submitted to the Julia General registry. Until they are in General, add both registries once: <code>Pkg.Registry.add("General"); Pkg.Registry.add(url = "https://github.com/prittjam/CauRegistry.jl")</code>.</p>
 </section>
 
-<section id="papers">
-  <h2>Papers</h2>
+<section id="publications">
+  <h2>Publications</h2>
   <div class="cards papers">
     <article class="card paper">
       <img src="icons/rsdr.svg" alt="" width="56" height="56">
       <p class="venue">NeurIPS 2026</p>
       <h3>RANSAC Scoring Done Right</h3>
       <p class="authors">James Pritts, Felix Seegräber, Kevin Köser</p>
-      <p class="links"><a href="https://arxiv.org/abs/2606.27385">arXiv</a><a href="https://ransacscoringdoneright.github.io">Project page</a></p>
+      <div class="links"><a href="https://arxiv.org/pdf/2606.27385">pdf</a><a href="https://ransacscoringdoneright.github.io">project</a><details class="bibtex"><summary>bibtex</summary><div class="reveal"><button class="copy-btn" type="button" aria-label="Copy BibTeX" title="Copy BibTeX"><svg class="icon-copy" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><svg class="icon-done" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></button><pre>@inproceedings{pritts2026ransac,
+  title     = {RANSAC Scoring Done Right},
+  author    = {Pritts, James and Seegr{\"a}ber, Felix and K{\"o}ser, Kevin},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2026},
+  eprint    = {2606.27385},
+  archivePrefix = {arXiv}
+}</pre></div></details></div>
     </article>
     <article class="card paper">
       <img src="icons/lodr.svg" alt="" width="56" height="56">
       <p class="venue">ACCV 2026</p>
       <h3>Robust Local Optimization Done Right</h3>
       <p class="authors">James Pritts, Kevin Köser</p>
-      <p class="links"><a href="https://arxiv.org/abs/2610.05743">arXiv</a><a href="https://localoptimizationdoneright.github.io">Project page</a></p>
+      <div class="links"><a href="https://arxiv.org/pdf/2610.05743">pdf</a><a href="https://localoptimizationdoneright.github.io">project</a><details class="bibtex"><summary>bibtex</summary><div class="reveal"><button class="copy-btn" type="button" aria-label="Copy BibTeX" title="Copy BibTeX"><svg class="icon-copy" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><svg class="icon-done" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></button><pre>@inproceedings{pritts2026localopt,
+  title     = {Robust Local Optimization Done Right},
+  author    = {Pritts, James and K{\"o}ser, Kevin},
+  booktitle = {Asian Conference on Computer Vision (ACCV)},
+  year      = {2026},
+  eprint    = {2610.05743},
+  archivePrefix = {arXiv}
+}</pre></div></details></div>
     </article>
     <article class="card paper">
       <img src="icons/blobboards.svg" alt="" width="56" height="56">
       <p class="venue">BMVC 2026</p>
       <h3>BlobBoards: Robust Markers for Accurate Pose</h3>
       <p class="authors">James Pritts, Till Sittart, Hendrik Sauer, Silja Janßen, Felix Seegräber, David Nakath, Kevin Köser</p>
-      <p class="links"><a href="https://arxiv.org/abs/2608.28830">arXiv</a><a href="https://blobboards.github.io">Project page</a></p>
+      <div class="links"><a href="https://arxiv.org/pdf/2608.28830">pdf</a><a href="https://blobboards.github.io">project</a><details class="bibtex"><summary>bibtex</summary><div class="reveal"><button class="copy-btn" type="button" aria-label="Copy BibTeX" title="Copy BibTeX"><svg class="icon-copy" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><svg class="icon-done" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></button><pre>@inproceedings{pritts2026blobboards,
+  author    = {Pritts, James and Sittart, Till and Sauer, Hendrik and Jan{\ss}en, Silja and Seegr{\"a}ber, Felix and Nakath, David and K{\"o}ser, Kevin},
+  title     = {{BlobBoards}: Robust Markers for Accurate Pose},
+  booktitle = {British Machine Vision Conference (BMVC)},
+  year      = {2026}
+}</pre></div></details></div>
     </article>
   </div>
 </section>

@@ -28,7 +28,7 @@
         lineColor: "#8a96a3",
         fontFamily: "Lato, Helvetica Neue, Arial, sans-serif"
       },
-      flowchart: { curve: "basis", nodeSpacing: 36, rankSpacing: 56 }
+      flowchart: { curve: "basis", nodeSpacing: 28, rankSpacing: 48, padding: 10 }
     });
     el.removeAttribute("data-processed");
     el.textContent = source;
@@ -38,3 +38,19 @@
   render();
   if (dark.addEventListener) dark.addEventListener("change", render);
 })();
+
+// Copies a publication's BibTeX entry and briefly shows a check mark.
+document.addEventListener("click", function (ev) {
+  var btn = ev.target.closest(".copy-btn");
+  if (!btn || !navigator.clipboard) return;
+  var pre = btn.parentNode.querySelector("pre");
+  navigator.clipboard.writeText(pre.textContent).then(function () {
+    btn.dataset.state = "copied";
+    btn.setAttribute("aria-label", "BibTeX copied");
+    clearTimeout(btn._reset);
+    btn._reset = setTimeout(function () {
+      delete btn.dataset.state;
+      btn.setAttribute("aria-label", "Copy BibTeX");
+    }, 1600);
+  });
+});
