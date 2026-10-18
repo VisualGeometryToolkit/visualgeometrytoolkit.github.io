@@ -11,6 +11,9 @@
 #   PORTAL_NO_EXTERNAL=1 …                                    # skip the three external repositories
 #   PORTAL_OUT=<dir> …                                        # output directory (default portal/out)
 #
+# The five renamed workspace packages keep their old paths as redirect pages
+# (RENAMED below).
+#
 # CI (.github/workflows/portal.yml) then copies the hand-written landing page
 # (index.html, style.css, main.js, icons/) over the output's root redirect.
 #
@@ -20,8 +23,8 @@
 using MultiDocumenter
 
 const MONOREPO = "https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl.git"
-const WORKSPACE = ["VisualGeometryCore", "VisualGeometryIo", "VisualGeometryFeatures",
-    "RobustVisualGeometry", "VisualGeometryEval", "PoseLib"]
+const WORKSPACE = ["VisualGeometryToolkitCore", "VisualGeometryToolkitIo", "VisualGeometryToolkitFeatures",
+    "VisualGeometryToolkitEstimation", "VisualGeometryToolkitEval", "PoseLib"]
 # The separate projects have their own project pages (<project>.github.io)
 # and their docs live THERE only: the portal links to them instead of hosting
 # a second copy that can go stale. Their old portal URLs (/<Project>/...) are
@@ -69,6 +72,46 @@ function write_redirects(outpath, p)
     end
     @info "$p: $n redirect pages to $(site_url(p))"
 end
+# The workspace packages' pre-rename names (2026-10-19, at General's request:
+# General already holds unrelated VisualGeometry* packages). Their old portal
+# URLs are redirect pages to the same page under the new name, one per HTML page
+# the new docs have, under every version directory the old docs published; a
+# version the new docs do not have yet (`stable` before the first tag) lands on
+# their `dev`.
+const RENAMED = ["VisualGeometryCore" => "VisualGeometryToolkitCore",
+    "VisualGeometryIo" => "VisualGeometryToolkitIo",
+    "VisualGeometryFeatures" => "VisualGeometryToolkitFeatures",
+    "RobustVisualGeometry" => "VisualGeometryToolkitEstimation",
+    "VisualGeometryEval" => "VisualGeometryToolkitEval"]
+function redirect_page(out, name, target)
+    mkpath(dirname(out))
+    write(out, """<!DOCTYPE html><html><head><meta charset="utf-8"><title>Moved: $name</title>
+        <link rel="canonical" href="$target"><meta http-equiv="refresh" content="0; url=$target">
+        </head><body><p>$name is now <a href="$target">$target</a>.</p></body></html>
+        """)
+end
+function write_rename_redirects(outpath, pages, old, new)
+    newdir = joinpath(pages, new)
+    isdir(newdir) || (@warn "no docs for $new: no redirects from $old"; return)
+    olddir = joinpath(pages, old)
+    versions = union(["dev", "stable"], isdir(olddir) ? filter(v -> isdir(joinpath(olddir, v)), readdir(olddir)) : String[])
+    base = "/$new/"
+    redirect_page(joinpath(outpath, old, "index.html"), old, base)
+    n = 1
+    for v in versions
+        tv = isdir(joinpath(newdir, v)) ? v : "dev"
+        isdir(joinpath(newdir, tv)) || continue
+        for (dir, _, files) in walkdir(joinpath(newdir, tv)), f in files
+            endswith(f, ".html") || continue
+            rel = relpath(joinpath(dir, f), joinpath(newdir, tv))
+            target = base * tv * "/" * replace(rel, r"(^|/)index\.html$" => s"\1")
+            redirect_page(joinpath(outpath, old, v, rel), old, target)
+            n += 1
+        end
+    end
+    @info "$old: $n redirect pages to $base"
+end
+
 MultiDocumenter.make(
     outpath, docs;
     search_engine = MultiDocumenter.SearchConfig(index_versions = ["stable", "dev"], engine = MultiDocumenter.FlexSearch),
@@ -78,3 +121,4 @@ MultiDocumenter.make(
 )
 
 get(ENV, "PORTAL_NO_EXTERNAL", "") == "1" || foreach(p -> write_redirects(outpath, p), EXTERNAL)
+foreach(((old, new),) -> write_rename_redirects(outpath, pages, old, new), RENAMED)

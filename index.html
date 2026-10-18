@@ -41,14 +41,14 @@
   <figure class="graph">
     <pre class="mermaid" id="ecosystem-graph">
 flowchart TD
-    VGC["&lt;img class='nicon' src='icons/vgc.svg' width='24' height='24'&gt;VisualGeometryCore"]
-    VGF["&lt;img class='nicon' src='icons/vgf.svg' width='24' height='24'&gt;VisualGeometryFeatures"]
-    VGIo["&lt;img class='nicon' src='icons/vgio.svg' width='24' height='24'&gt;VisualGeometryIo"]
-    RVG["&lt;img class='nicon' src='icons/rvg.svg' width='24' height='24'&gt;RobustVisualGeometry"]
+    VGC["&lt;img class='nicon' src='icons/vgc.svg' width='24' height='24'&gt;VisualGeometryToolkitCore"]
+    VGF["&lt;img class='nicon' src='icons/vgf.svg' width='24' height='24'&gt;VisualGeometryToolkitFeatures"]
+    VGIo["&lt;img class='nicon' src='icons/vgio.svg' width='24' height='24'&gt;VisualGeometryToolkitIo"]
+    RVG["&lt;img class='nicon' src='icons/rvg.svg' width='24' height='24'&gt;VisualGeometryToolkitEstimation"]
     PL["&lt;img class='nicon' src='icons/poselib.svg' width='24' height='24'&gt;PoseLib"]
     RSDR["&lt;img class='nicon' src='icons/rsdr.svg' width='24' height='24'&gt;RansacScoringDoneRight"]
     LODR["&lt;img class='nicon' src='icons/lodr.svg' width='24' height='24'&gt;LocalOptimizationDoneRight"]
-    VGEval["&lt;img class='nicon' src='icons/vgeval.svg' width='24' height='24'&gt;VisualGeometryEval"]
+    VGEval["&lt;img class='nicon' src='icons/vgeval.svg' width='24' height='24'&gt;VisualGeometryToolkitEval"]
     BB["&lt;img class='nicon' src='icons/blobboards.svg' width='24' height='24'&gt;BlobBoards"]
 
     VGC --> VGF
@@ -75,12 +75,12 @@ flowchart TD
 
     class P1,P2,P3 paper
 
-    click VGC href "VisualGeometryCore/" _blank
-    click VGIo href "VisualGeometryIo/" _blank
-    click VGF href "VisualGeometryFeatures/" _blank
-    click VGEval href "VisualGeometryEval/" _blank
+    click VGC href "VisualGeometryToolkitCore/" _blank
+    click VGIo href "VisualGeometryToolkitIo/" _blank
+    click VGF href "VisualGeometryToolkitFeatures/" _blank
+    click VGEval href "VisualGeometryToolkitEval/" _blank
     click RSDR href "https://ransacscoringdoneright.github.io" _blank
-    click RVG href "RobustVisualGeometry/" _blank
+    click RVG href "VisualGeometryToolkitEstimation/" _blank
     click PL href "PoseLib/" _blank
     click LODR href "https://localoptimizationdoneright.github.io" _blank
     click BB href "https://blobboards.github.io" _blank
@@ -96,27 +96,27 @@ flowchart TD
   <div class="cards">
     <article class="card">
       <img src="icons/vgc.svg" alt="" width="56" height="56">
-      <h3>VisualGeometryCore.jl</h3>
+      <h3>VisualGeometryToolkitCore.jl</h3>
       <p>Geometric primitives, transforms, camera models, coordinate frames and normalization, and the minimal solvers and robust-estimation building blocks the rest of the toolkit shares.</p>
-      <p class="links"><a href="VisualGeometryCore/">docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryCore">code</a></p>
+      <p class="links"><a href="VisualGeometryToolkitCore/">docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryToolkitCore">code</a></p>
     </article>
     <article class="card">
       <img src="icons/vgio.svg" alt="" width="56" height="56">
-      <h3>VisualGeometryIo.jl</h3>
+      <h3>VisualGeometryToolkitIo.jl</h3>
       <p>Serialization for transforms and cameras: a COLMAP model reader and writer, and a small self-describing JSON schema for named rigid transforms with explicit units.</p>
-      <p class="links"><a href="VisualGeometryIo/">docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryIo">code</a></p>
+      <p class="links"><a href="VisualGeometryToolkitIo/">docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryToolkitIo">code</a></p>
     </article>
     <article class="card">
       <img src="icons/vgf.svg" alt="" width="56" height="56">
-      <h3>VisualGeometryFeatures.jl</h3>
+      <h3>VisualGeometryToolkitFeatures.jl</h3>
       <p>Feature detection, description and matching: ASIFT detection and nearest-neighbour matching in one KernelAbstractions implementation for the CPU and GPUs.</p>
-      <p class="links"><a href="VisualGeometryFeatures/">docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryFeatures">code</a></p>
+      <p class="links"><a href="VisualGeometryToolkitFeatures/">docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryToolkitFeatures">code</a></p>
     </article>
     <article class="card">
       <img src="icons/vgeval.svg" alt="" width="56" height="56">
-      <h3>VisualGeometryEval.jl</h3>
+      <h3>VisualGeometryToolkitEval.jl</h3>
       <p>The shared evaluation base: dataset readers, correspondence pools, statistics and bootstrap intervals, cross-validated tuning and the experiment framework.</p>
-      <p class="links"><a href="VisualGeometryEval/">docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryEval">code</a></p>
+      <p class="links"><a href="VisualGeometryToolkitEval/">docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryToolkitEval">code</a></p>
     </article>
     <article class="card">
       <img src="icons/rsdr.svg" alt="" width="56" height="56">
@@ -126,9 +126,9 @@ flowchart TD
     </article>
     <article class="card">
       <img src="icons/rvg.svg" alt="" width="56" height="56">
-      <h3>RobustVisualGeometry.jl</h3>
+      <h3>VisualGeometryToolkitEstimation.jl</h3>
       <p>Robust estimation for geometric vision: the RANSAC loop, local-optimization engines, and problems for lines, homographies, fundamental and essential matrices and absolute pose.</p>
-      <p class="links"><a href="RobustVisualGeometry/">docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/RobustVisualGeometry">code</a></p>
+      <p class="links"><a href="VisualGeometryToolkitEstimation/">docs</a><a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/tree/main/VisualGeometryToolkitEstimation">code</a></p>
     </article>
     <article class="card">
       <img src="icons/poselib.svg" alt="" width="56" height="56">
@@ -158,18 +158,18 @@ flowchart TD
     <div class="usecase">
       <h3>Geometry primitives, cameras and transforms</h3>
       <pre><code>using Pkg
-Pkg.add("VisualGeometryCore")</code></pre>
+Pkg.add("VisualGeometryToolkitCore")</code></pre>
     </div>
     <div class="usecase">
       <h3>Feature detection and matching</h3>
       <pre><code>using Pkg
-Pkg.add("VisualGeometryFeatures")</code></pre>
+Pkg.add("VisualGeometryToolkitFeatures")</code></pre>
     </div>
     <div class="usecase">
       <h3>Robust estimation</h3>
       <pre><code>using Pkg
-Pkg.add("RobustVisualGeometry")
-# brings VisualGeometryCore and RansacScoringDoneRight</code></pre>
+Pkg.add("VisualGeometryToolkitEstimation")
+# brings VisualGeometryToolkitCore and RansacScoringDoneRight</code></pre>
     </div>
     <div class="usecase">
       <h3>A paper's package</h3>

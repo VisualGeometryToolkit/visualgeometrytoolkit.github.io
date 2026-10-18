@@ -59,19 +59,19 @@ def frustum3d(ax, ay, quad):
 
 icons = {}
 
-# VisualGeometryCore: a camera frustum and its coordinate frame
-icons["vgc"] = ("VisualGeometryCore.jl",
+# VisualGeometryToolkitCore: a camera frustum and its coordinate frame
+icons["vgc"] = ("VisualGeometryToolkitCore.jl",
     frustum3d(32, 62, [(50, 16), (82, 24), (78, 52), (46, 44)])
     + arrow(32, 62, 32, 86, "a", 6)    # y down
     + arrow(32, 62, 10, 62, "a", 6))   # x
 
-# VisualGeometryIo: a data file with data in and out
-icons["vgio"] = ("VisualGeometryIo.jl",
+# VisualGeometryToolkitIo: a data file with data in and out
+icons["vgio"] = ("VisualGeometryToolkitIo.jl",
     '<path class="s" d="M34,18 H56 L66,28 V78 H34 Z M56,18 V28 H66"/>'
     + '<path class="a" d="M42,42 H58 M42,52 H58 M42,62 H52"/>'
     + arrow(8, 36, 26, 36) + arrow(72, 64, 90, 64))
 
-# VisualGeometryFeatures: keypoints with scale circles and orientations
+# VisualGeometryToolkitFeatures: keypoints with scale circles and orientations
 kp = [(37, 39, 15, 0.6), (66, 63, 11, -2.2), (68, 29, 7, 2.6), (30, 72, 8, 1.2)]
 body = ""
 import math
@@ -79,21 +79,21 @@ for x, y, r, th in kp:
     body += f'<circle class="s" cx="{x}" cy="{y}" r="{r}"/>'
     body += f'<path class="s" d="M{x},{y} L{x + r*math.cos(th):.1f},{y + r*math.sin(th):.1f}"/>'
     body += f'<circle class="fa" cx="{x}" cy="{y}" r="3.2"/>'
-icons["vgf"] = ("VisualGeometryFeatures.jl", body)
+icons["vgf"] = ("VisualGeometryToolkitFeatures.jl", body)
 
-# VisualGeometryEval: benchmark bars and a target
-icons["vgeval"] = ("VisualGeometryEval.jl",
+# VisualGeometryToolkitEval: benchmark bars and a target
+icons["vgeval"] = ("VisualGeometryToolkitEval.jl",
     '<path class="s" d="M16,18 V80 H82"/>'
     + '<path class="s" d="M27,80 V62 H37 V80 M44,80 V50 H54 V80 M61,80 V40 H71 V80"/>'
     + '<circle class="a" cx="71" cy="22" r="11"/><circle class="fa" cx="71" cy="22" r="4"/>')
 
-# RobustVisualGeometry: a robust line fit, inliers on it and outliers off it
+# VisualGeometryToolkitEstimation: a robust line fit, inliers on it and outliers off it
 inl = [(18, 70), (27, 66), (35, 59), (44, 55), (52, 47), (61, 43), (70, 35), (78, 31)]
 outl = [(24, 30), (44, 22), (66, 70), (82, 58), (36, 84)]
 body = '<path class="s" d="M12,75 L84,27"/>'
 body += "".join(f'<circle class="fs" cx="{x}" cy="{y}" r="3.6"/>' for x, y in inl)
 body += "".join(f'<circle class="fa" cx="{x}" cy="{y}" r="3.6"/>' for x, y in outl)
-icons["rvg"] = ("RobustVisualGeometry.jl", body)
+icons["rvg"] = ("VisualGeometryToolkitEstimation.jl", body)
 
 # PoseLib: two cameras viewing one point, linked by their relative pose
 icons["poselib"] = ("PoseLib.jl",
