@@ -1,0 +1,27 @@
+# Dead-link check (lychee) over the hand-written landing page and the README,
+# with the exclusions and accepted codes in .lychee.toml; the landing page's
+# relative package-docs links are checked on the published site. Runs on PRs,
+# pushes to main, weekly (links rot without a commit), and by hand.
+name: Links
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '41 4 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          lycheeVersion: v0.24.2   # .lychee.toml uses this release's keys
+          fail: true
+          args: --config .lychee.toml --no-progress index.html README.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # GitHub's API rate limit
