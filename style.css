@@ -67,6 +67,10 @@ code, pre { font-family: "JuliaMono", ui-monospace, monospace; font-size: 0.85re
   border: 1px solid var(--border); background: var(--surface); color: var(--text);
   font-weight: 700;
 }
+/* GitHub star badges (shields.io, no script): the hero's and one per paper */
+.stars { margin: 1.1rem 0 0; }
+a.star { display: inline-flex; align-items: center; }
+a.star img { display: block; height: 20px; }
 .btn.brand { background: var(--accent); border-color: var(--accent); color: var(--accent-contrast); }
 .btn:hover { text-decoration: none; border-color: var(--accent); }
 
