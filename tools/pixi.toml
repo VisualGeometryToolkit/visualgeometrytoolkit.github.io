@@ -7,6 +7,7 @@ version = "0.1.0"
 
 [tasks]
 icons = "python make_icons.py"
+social-card = "python make_social_card.py"   # needs inkscape on PATH
 
 [dependencies]
 python = ">=3.12"
