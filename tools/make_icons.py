@@ -65,8 +65,8 @@ icons["vgc"] = ("VisualGeometryToolkitCore.jl",
     + arrow(32, 62, 32, 86, "a", 6)    # y down
     + arrow(32, 62, 10, 62, "a", 6))   # x
 
-# VisualGeometryToolkitIo: a data file with data in and out
-icons["vgio"] = ("VisualGeometryToolkitIo.jl",
+# VisualGeometryToolkitIO: a data file with data in and out
+icons["vgio"] = ("VisualGeometryToolkitIO.jl",
     '<path class="s" d="M34,18 H56 L66,28 V78 H34 Z M56,18 V28 H66"/>'
     + '<path class="a" d="M42,42 H58 M42,52 H58 M42,62 H52"/>'
     + arrow(8, 36, 26, 36) + arrow(72, 64, 90, 64))

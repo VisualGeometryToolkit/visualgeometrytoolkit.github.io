@@ -23,7 +23,7 @@
 using MultiDocumenter
 
 const MONOREPO = "https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl.git"
-const WORKSPACE = ["VisualGeometryToolkitCore", "VisualGeometryToolkitIo", "VisualGeometryToolkitFeatures",
+const WORKSPACE = ["VisualGeometryToolkitCore", "VisualGeometryToolkitIO", "VisualGeometryToolkitFeatures",
     "VisualGeometryToolkitEstimation", "VisualGeometryToolkitEval", "PoseLib"]
 # The separate projects have their own project pages (<project>.github.io)
 # and their docs live THERE only: the portal links to them instead of hosting
@@ -79,7 +79,7 @@ end
 # version the new docs do not have yet (`stable` before the first tag) lands on
 # their `dev`.
 const RENAMED = ["VisualGeometryCore" => "VisualGeometryToolkitCore",
-    "VisualGeometryIo" => "VisualGeometryToolkitIo",
+    "VisualGeometryIo" => "VisualGeometryToolkitIO",
     "VisualGeometryFeatures" => "VisualGeometryToolkitFeatures",
     "RobustVisualGeometry" => "VisualGeometryToolkitEstimation",
     "VisualGeometryEval" => "VisualGeometryToolkitEval"]
