@@ -57,7 +57,7 @@
 
 <section id="ecosystem">
   <h2>Ecosystem</h2>
-  <p class="lead">Nine packages built on one core. Each package builds on the ones above it (direct dependencies; edges implied through another package are omitted). A dashed arrow is an optional dependency (package extension); the dashed pills are the papers the packages accompany. Click a node to open it.</p>
+  <p class="lead">Ten packages built on one core. Each package builds on the ones above it (direct dependencies; edges implied through another package are omitted). A dashed arrow is an optional dependency (package extension); the dashed pills are the papers the packages accompany. Click a node to open it.</p>
   <figure class="graph">
     <pre class="mermaid" id="ecosystem-graph">
 flowchart TD
@@ -70,6 +70,7 @@ flowchart TD
     LODR["&lt;img class='nicon' src='icons/lodr.svg' width='24' height='24'&gt;LocalOptimizationDoneRight"]
     VGEval["&lt;img class='nicon' src='icons/vgeval.svg' width='24' height='24'&gt;VisualGeometryToolkitEval"]
     BB["&lt;img class='nicon' src='icons/blobboards.svg' width='24' height='24'&gt;BlobBoards"]
+    PS["&lt;img class='nicon' src='icons/panorama.svg' width='24' height='24'&gt;PanoramaStitching"]
 
     VGC --> VGF
     VGC --> VGIo
@@ -84,6 +85,8 @@ flowchart TD
     VGIo --> BB
     RSDR --> BB
     LODR --> BB
+    VGF --> PS
+    RVG --> PS
 
     P1(["NeurIPS 2026"])
     P2(["ACCV 2026"])
@@ -104,6 +107,7 @@ flowchart TD
     click PL href "PoseLib/" _blank
     click LODR href "https://localoptimizationdoneright.github.io" _blank
     click BB href "https://blobboards.github.io" _blank
+    click PS href "https://github.com/VisualGeometryToolkit/PanoramaStitching.jl" _blank
     click P1 href "https://arxiv.org/pdf/2606.27385" _blank
     click P2 href "https://arxiv.org/pdf/2610.05743" _blank
     click P3 href "https://arxiv.org/pdf/2608.28830" _blank
@@ -167,6 +171,12 @@ flowchart TD
       <h3>BlobBoards.jl</h3>
       <p>Blob marker boards: author printable boards, detect and identify them in images, and estimate their pose from hundreds of blob correspondences.</p>
       <p class="links"><a href="https://blobboards.github.io">project</a></p>
+    </article>
+    <article class="card">
+      <img src="icons/panorama.svg" alt="" width="56" height="56">
+      <h3>PanoramaStitching.jl</h3>
+      <p>Rotation-only panoramas from a camera turning about its centre: features matched as unit bearings, robust rotation averaging, and a rotation bundle on the sphere that the stack's NLLSsolver driver solves.</p>
+      <p class="links"><a href="https://github.com/VisualGeometryToolkit/PanoramaStitching.jl">code</a></p>
     </article>
   </div>
 </section>

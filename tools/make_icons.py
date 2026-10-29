@@ -103,6 +103,15 @@ icons["poselib"] = ("PoseLib.jl",
     + '<circle class="fa" cx="48" cy="16" r="4.5"/>'
     + '<path class="a" d="M24,80 Q48,92 72,80"/>' + arrow(66, 83.2, 72, 80, "a", 6))
 
+# PanoramaStitching: three image frames fanned about one camera centre (a
+# rotation-only sweep), a skyline running across all three, stitched into one
+icons["panorama"] = ("PanoramaStitching.jl",
+    "".join(f'<rect class="s" x="36" y="20" width="24" height="34" rx="2" transform="rotate({a} 48 84)"/>'
+            for a in (-30, 0, 30))
+    + '<path class="s d" d="M48,80 L48,58"/>'
+    + '<circle class="fs" cx="48" cy="84" r="4"/>'
+    + '<path class="a" d="M16,52 L25,43 L31,47 L41,34 L50,44 L57,38 L66,46 L73,40 L81,49"/>')
+
 for key, (title, body) in icons.items():
     (OUT / f"{key}.svg").write_text(svg(body, title))
 
