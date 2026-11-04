@@ -31,9 +31,13 @@ const WORKSPACE = ["VisualGeometryToolkitCore", "VisualGeometryToolkitIO", "Visu
 # redirect pages to the same path on the project site, so shared links keep
 # working. The workspace packages have no page of their own: the portal is
 # their home (their docs' canonical URLs point here).
-const EXTERNAL = ["RansacScoringDoneRight", "LocalOptimizationDoneRight", "BlobBoards"]
+const EXTERNAL = ["RANSACScoringDoneRight", "LocalOptimizationDoneRight", "BlobBoards"]
 site_repo(p) = (o = lowercase(p); "https://github.com/$o/$o.github.io.git")
 site_url(p) = "https://$(lowercase(p)).github.io/"
+# The portal path a project's redirects were published under: its name when
+# the portal hosted it (RANSACScoringDoneRight was then RansacScoringDoneRight).
+const PORTAL_PATH = Dict("RANSACScoringDoneRight" => "RansacScoringDoneRight")
+portal_path(p) = get(PORTAL_PATH, p, p)
 
 pages = get(ENV, "PORTAL_LOCAL", "")
 if isempty(pages)
@@ -62,7 +66,7 @@ function write_redirects(outpath, p)
         (endswith(f, ".html") && !occursin("/.git", dir)) || continue
         rel = relpath(joinpath(dir, f), src)
         target = site_url(p) * replace(rel, r"(^|/)index\.html$" => s"\1")
-        out = joinpath(outpath, p, rel)
+        out = joinpath(outpath, portal_path(p), rel)
         mkpath(dirname(out))
         write(out, """<!DOCTYPE html><html><head><meta charset="utf-8"><title>Moved: $p</title>
             <link rel="canonical" href="$target"><meta http-equiv="refresh" content="0; url=$target">

@@ -1,6 +1,5 @@
 # Dead-link check (lychee) over the hand-written landing page and the README,
-# with the exclusions and accepted codes in .lychee.toml; the landing page's
-# relative package-docs links are checked on the published site. Runs on PRs,
+# with the exclusions and accepted codes in .lychee.toml. Runs on PRs,
 # pushes to main, weekly (links rot without a commit), and by hand.
 name: Links
 on:

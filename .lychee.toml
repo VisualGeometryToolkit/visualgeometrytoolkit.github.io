@@ -9,9 +9,10 @@ timeout = 30
 max_concurrency = 16
 
 # 429 is rate limiting, never a dead link. 403 is NOT accepted: no checked file
-# links to doi.org or a publisher site (IEEE, ACM, Springer, Elsevier, Wiley),
-# which answer 403 to anonymous clients such as CI runners. If such links appear,
-# exclude those hosts by name rather than accepting 403 for every host.
+# links to a publisher site (IEEE, ACM, Springer, Elsevier, Wiley), which answer
+# 403 to anonymous clients such as CI runners. If such links appear, exclude
+# those hosts by name rather than accepting 403 for every host. The doi.org
+# links are Zenodo DOIs, which resolve for anonymous clients.
 accept = ["200..=299", "429"]
 
 # Skip links to localhost and private networks (the README's preview server).
@@ -20,20 +21,9 @@ exclude_all_private = true
 # Mail addresses are not checked.
 include_mail = false
 
-# The landing page links the package docs relatively (`VisualGeometryToolkitCore/`).
-# Those directories are not in this repository: the Portal workflow builds them
-# into the published site, so check them there.
-remap = [
-  '^file://.*/((VisualGeometryToolkit[A-Za-z]+|PoseLib)/?)$ https://visualgeometrytoolkit.github.io/$1',
-]
-
 exclude = [
   '^mailto:',
   '^https?://(localhost|127\.0\.0\.1)',
-  # Per-package release docs exist only once a package is tagged, after its
-  # General registration (TagBot then deploys /<Package>/stable/). Expected 404s
-  # until then: remove this exclusion once every package has a tagged release.
-  '^https://visualgeometrytoolkit\.github\.io/VisualGeometryToolkit[A-Za-z]+/stable',
   # Codecov badges and app pages 404 for anonymous clients or time out.
   '^https://(app\.)?codecov\.io/',
   # CI status badges (GitHub renders them; anonymous fetches can be slow or 404

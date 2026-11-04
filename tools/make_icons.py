@@ -143,7 +143,7 @@ lodr = lodr.crop((16, 16, 1015, 741))
 rl = Image.open(SRC / "RansacScoringDoneRight.jl/docs/src/assets/landing/hero_scoring_light.png").convert("RGBA")
 rd = Image.open(SRC / "RansacScoringDoneRight.jl/docs/src/assets/landing/hero_scoring_dark.png").convert("RGBA")
 box = (330, 214, 1285, 1169)
-(OUT / "rsdr.svg").write_text(hero_svg("RansacScoringDoneRight.jl", rl.crop(box), rd.crop(box), inset=7))
+(OUT / "rsdr.svg").write_text(hero_svg("RANSACScoringDoneRight.jl", rl.crop(box), rd.crop(box), inset=7))
 
 # BlobBoards: its landing hero, a board at the current authoring defaults
 # exported by BlobBoards' own API (docs/make_hero.jl; light and dark renderings)
