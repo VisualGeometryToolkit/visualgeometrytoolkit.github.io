@@ -26,6 +26,9 @@ recorded beside it in `docs/hero_board.json`).
     cd tools
     pixi run icons        # pixi.toml + pixi.lock pin Python and Pillow
 
+`icons/radiometric.svg` (Real Cameras are Radiometric, a publication card) is
+hand-written in the same style and is not produced by the script.
+
 ## Package documentation
 
 `.github/workflows/portal.yml` builds the published site: this landing page at
