@@ -10,6 +10,8 @@
   --accent: #2e63b8;
   --accent-contrast: #ffffff;
   --code-bg: #f5f5f5;
+  --related: #b36b00;        /* packages built on the toolkit, maintained outside it (the graph's related nodes) */
+  --related-bg: #fff6e8;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -22,6 +24,8 @@
     --accent: #1abc9c;
     --accent-contrast: #00332a;
     --code-bg: #2b3232;
+    --related: #f0a848;
+    --related-bg: #2f2a22;
   }
 }
 
@@ -112,6 +116,10 @@ h3 { margin: 0; font-size: 1.05rem; }
 /* Paper pills: dashed, venue in the accent colour */
 .graph .node.paper rect, .graph .node.paper path { fill: none !important; stroke: var(--accent) !important; stroke-dasharray: 4 3; }
 .graph .node.paper .nodeLabel { color: var(--accent) !important; font-weight: 700; font-size: 0.9em; }
+/* Related packages (built on the toolkit, maintained outside it): their own colour, never the toolkit's */
+.graph .node.related rect { fill: var(--related-bg) !important; stroke: var(--related) !important; stroke-width: 1.5px !important; }
+.graph .node.related .nodeLabel { color: var(--related) !important; }
+.graph a:hover .node.related rect, .graph .node.related.clickable:hover rect { stroke: var(--related) !important; stroke-width: 2.5px !important; }
 @media (max-width: 760px) {
   /* Keep the graph legible on phones: it scrolls inside its frame. */
   .graph svg { max-width: none !important; width: 760px; }

@@ -57,7 +57,7 @@
 
 <section id="ecosystem">
   <h2>Ecosystem</h2>
-  <p class="lead">Ten packages built on one core. Each package builds on the ones above it (direct dependencies, as the stack's <a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/blob/main/VisualGeometryToolkitCore/configs/stack_dependencies.toml">dependency allow-list</a> permits them; edges implied through another package are omitted). A dashed arrow is an optional dependency (package extension); the dashed pills are the papers the packages accompany. Click a node to open it.</p>
+  <p class="lead">Ten packages built on one core. Each package builds on the ones above it (direct dependencies, as the stack's <a href="https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl/blob/main/VisualGeometryToolkitCore/configs/stack_dependencies.toml">dependency allow-list</a> permits them; edges implied through another package are omitted). A dashed arrow is an optional dependency (package extension); the dashed pills are the papers the packages accompany. The amber node is a <a href="#related-packages">related package</a>, built on the toolkit and maintained outside it. Click a node to open it.</p>
   <figure class="graph">
     <pre class="mermaid" id="ecosystem-graph">
 flowchart TD
@@ -71,6 +71,7 @@ flowchart TD
     VGEval["&lt;img class='nicon' src='icons/vgeval.svg' width='24' height='24'&gt;VisualGeometryToolkitEval"]
     BB["&lt;img class='nicon' src='icons/blobboards.svg' width='24' height='24'&gt;BlobBoards"]
     PS["&lt;img class='nicon' src='icons/panorama.svg' width='24' height='24'&gt;PanoramaStitching"]
+    RC["&lt;img class='nicon' src='icons/radiometric.svg' width='24' height='24'&gt;RadiometricCamera"]
 
     VGC --> VGF
     VGC --> VGIo
@@ -87,16 +88,22 @@ flowchart TD
     LODR --> BB
     VGF --> PS
     RVG --> PS
+    VGF --> RC
+    VGIo --> RC
+    RVG --> RC
 
     P1(["NeurIPS 2026"])
     P2(["ACCV 2026"])
     P3(["BMVC 2026"])
+    P4(["arXiv 2026"])
 
     RSDR -.- P1
     LODR -.- P2
     BB -.- P3
+    RC -.- P4
 
-    class P1,P2,P3 paper
+    class P1,P2,P3,P4 paper
+    class RC related
 
     click VGC href "https://visualgeometrytoolkit.github.io/VisualGeometryToolkitCore/" _blank
     click VGIo href "https://visualgeometrytoolkit.github.io/VisualGeometryToolkitIO/" _blank
@@ -111,6 +118,8 @@ flowchart TD
     click P1 href "https://arxiv.org/pdf/2606.27385" _blank
     click P2 href "https://arxiv.org/pdf/2610.05743" _blank
     click P3 href "https://arxiv.org/pdf/2608.28830" _blank
+    click RC href "https://realcamerasareradiometric.github.io" _blank
+    click P4 href "https://arxiv.org/pdf/2611.25265" _blank
     </pre>
   </figure>
 </section>
@@ -171,21 +180,21 @@ flowchart TD
       <img src="icons/lodr.svg" alt="" width="56" height="56">
       <h3>LocalOptimizationDoneRight.jl</h3>
       <p>The paper's robust local optimizers, ready to compose into any RANSAC of the stack, for essential matrix, fundamental matrix and homography estimation.</p>
-      <p class="install"><code>pkg&gt; add LocalOptimizationDoneRight</code> · CauRegistry, General pending</p>
+      <p class="install"><code>pkg&gt; add LocalOptimizationDoneRight</code> · General</p>
       <p class="links"><a href="https://localoptimizationdoneright.github.io">docs</a><a href="https://github.com/VisualGeometryToolkit/LocalOptimizationDoneRight.jl">code</a></p>
     </article>
     <article class="card">
       <img src="icons/blobboards.svg" alt="" width="56" height="56">
       <h3>BlobBoards.jl</h3>
       <p>A fiducial marker system: printable boards covered in a dense, multi-scale field of Gaussian blobs, found, identified and posed from hundreds of blob correspondences on the CPU or a GPU.</p>
-      <p class="install"><code>pkg&gt; add BlobBoards</code> · CauRegistry, General pending</p>
+      <p class="install"><code>pkg&gt; add BlobBoards</code> · General</p>
       <p class="links"><a href="https://blobboards.github.io">docs</a><a href="https://github.com/VisualGeometryToolkit/BlobBoards.jl">code</a></p>
     </article>
     <article class="card">
       <img src="icons/panorama.svg" alt="" width="56" height="56">
       <h3>PanoramaStitching.jl</h3>
       <p>The panorama of a camera that only rotated, through a calibrated lens of any field of view (fisheyes past 90° included): frame rotations by RANSAC on bearings, robust rotation averaging and a rotation bundle.</p>
-      <p class="install"><code>pkg&gt; add PanoramaStitching</code> · CauRegistry, General pending</p>
+      <p class="install"><code>pkg&gt; add PanoramaStitching</code> · General</p>
       <p class="links"><a href="https://visualgeometrytoolkit.github.io/PanoramaStitching.jl/dev/">docs</a><a href="https://github.com/VisualGeometryToolkit/PanoramaStitching.jl">code</a></p>
     </article>
   </div>
@@ -199,8 +208,8 @@ flowchart TD
       <img src="icons/radiometric.svg" alt="" width="56" height="56">
       <h3>RadiometricCamera.jl</h3>
       <p>Lifts any central camera model of the toolkit to a radiometric one, with a finite aperture, a free-form focus surface and a generic vignetting function, and calibrates it by inverse rendering on the RAW photosites of ordinary calibration images.</p>
-      <p class="install">Code and documentation coming soon</p>
-      <p class="links"><a href="https://realcamerasareradiometric.github.io">project</a></p>
+      <p class="install"><code>pkg&gt; add https://github.com/RealCamerasAreRadiometric/realcamerasareradiometric.github.io:RadiometricCamera</code> · General pending</p>
+      <p class="links"><a href="https://realcamerasareradiometric.github.io">project</a><a href="https://realcamerasareradiometric.github.io/docs/">docs</a><a href="https://github.com/RealCamerasAreRadiometric/realcamerasareradiometric.github.io">code</a></p>
     </article>
   </div>
 </section>
@@ -223,14 +232,13 @@ flowchart TD
 pkg&gt; add RANSACScoringDoneRight   # NeurIPS 2026 scorer</code></pre>
     </div>
     <div class="usecase">
-      <h3>From CauRegistry, until General merges</h3>
-      <pre><code>pkg&gt; registry add https://github.com/prittjam/CauRegistry.jl
+      <h3>Markers, local optimization and panoramas</h3>
+      <pre><code>pkg&gt; add BlobBoards                   # BMVC 2026
 pkg&gt; add LocalOptimizationDoneRight   # ACCV 2026
-pkg&gt; add BlobBoards                   # BMVC 2026
 pkg&gt; add PanoramaStitching</code></pre>
     </div>
   </div>
-  <p class="note">VisualGeometryToolkitCore, VisualGeometryToolkitIO, VisualGeometryToolkitFeatures, VisualGeometryToolkitEstimation, VisualGeometryToolkitEval, PoseLib and RANSACScoringDoneRight are in the Julia General registry. LocalOptimizationDoneRight, BlobBoards and PanoramaStitching are in <a href="https://github.com/prittjam/CauRegistry.jl">CauRegistry</a>, with their General registrations pending; add CauRegistry once, as above.</p>
+  <p class="note">Every package of the toolkit is in the Julia General registry: no other registry is needed.</p>
 </section>
 
 <section id="publications">
@@ -296,12 +304,16 @@ pkg&gt; add PanoramaStitching</code></pre>
       <img src="icons/radiometric.svg" alt="" width="56" height="56">
       <p class="venue">Preprint 2026</p>
       <h3>Real Cameras are Radiometric</h3>
-      <p class="authors">Ties Harder, Felix Seegräber, Hendrik Sauer, David Nakath, Kevin Köser, James Pritts</p>
-      <div class="links"><a href="https://realcamerasareradiometric.github.io">project</a><details class="bibtex"><summary>bibtex</summary><div class="reveal"><button class="copy-btn" type="button" aria-label="Copy BibTeX" title="Copy BibTeX"><svg class="icon-copy" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><svg class="icon-done" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></button><pre>@misc{harder2026radiometric,
-  author = {Harder, Ties and Seegr{\"a}ber, Felix and Sauer, Hendrik and Nakath, David and K{\"o}ser, Kevin and Pritts, James},
-  title  = {Real Cameras are Radiometric},
-  year   = {2026},
-  url    = {https://realcamerasareradiometric.github.io}
+      <p class="authors">Ties Harder, Felix Seegräber, David Nakath, Hendrik Sauer, Kevin Köser, James Pritts</p>
+      <div class="links"><a href="https://arxiv.org/pdf/2611.25265">pdf</a><a href="https://arxiv.org/abs/2611.25265">arXiv</a><a href="https://realcamerasareradiometric.github.io">project</a><details class="bibtex"><summary>bibtex</summary><div class="reveal"><button class="copy-btn" type="button" aria-label="Copy BibTeX" title="Copy BibTeX"><svg class="icon-copy" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><svg class="icon-done" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></button><pre>@article{harder2026radiometric,
+  author        = {Harder, Ties and Seegr{\"a}ber, Felix and Nakath, David and
+                   Sauer, Hendrik and K{\"o}ser, Kevin and Pritts, James},
+  title         = {Real Cameras are Radiometric},
+  journal       = {arXiv preprint arXiv:2611.25265},
+  year          = {2026},
+  eprint        = {2611.25265},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
 }</pre></div></details></div>
     </article>
   </div>
