@@ -1,6 +1,8 @@
-# Dead-link check (lychee) over the hand-written landing page and the README,
-# with the exclusions and accepted codes in .lychee.toml. Runs on PRs,
-# pushes to main, weekly (links rot without a commit), and by hand.
+# Dead-link check (lychee) over the hand-written landing page and the README.
+# The job is the stack's reusable workflow (the monorepo's StackLinks.yml, the
+# same every stack repository calls: the stack's settings and exclusions are
+# there, this repository's exclusion below). Runs on PRs, pushes to main,
+# weekly (links rot without a commit), and by hand.
 name: Links
 on:
   push:
@@ -13,14 +15,11 @@ permissions:
   contents: read
 jobs:
   lychee:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v4
-      - uses: lycheeverse/lychee-action@v2
-        with:
-          lycheeVersion: v0.24.2   # .lychee.toml uses this release's keys
-          fail: true
-          args: --config .lychee.toml --no-progress index.html README.md
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # GitHub's API rate limit
+    uses: VisualGeometryToolkit/VisualGeometryToolkit.jl/.github/workflows/StackLinks.yml@workflows/v1
+    with:
+      paths: index.html README.md
+      timeout-minutes: 10
+      # CI status badges (GitHub renders them; anonymous fetches can be slow or 404
+      # before the first run on a branch).
+      exclude: |
+        ^https://github\.com/VisualGeometryToolkit/[^/]+/actions/workflows/[^/]+/badge\.svg
