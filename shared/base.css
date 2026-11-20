@@ -1,0 +1,144 @@
+/* The stack's landing-page stylesheet, shared by every toolkit's site: the palette (after Documenter's
+   documenter-light / documenter-dark themes and the DocumenterLandingPage hero used by the project pages), the page,
+   the hero text, the ecosystem graph, the cards with their BibTeX toggle, and the get-started blocks. A site links
+   this file, then its own style.css, which holds only what is its own (its title banner, further graph node
+   classes). Another toolkit's site takes this file from this repository at a pinned commit and never keeps a copy. */
+:root {
+  --bg: #ffffff;
+  --text: #222222;
+  --muted: #5f6b76;
+  --surface: #f5f7fa;
+  --border: #e0e4ea;
+  --border-strong: #b8c3cf;
+  --accent: #2e63b8;
+  --accent-contrast: #ffffff;
+  --code-bg: #f5f5f5;
+  --related: #b36b00;        /* packages maintained outside the toolkit (the graph's related nodes) */
+  --related-bg: #fff6e8;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1f2424;
+    --text: #e6e9ea;
+    --muted: #9aa5a8;
+    --surface: #282f2f;
+    --border: #343c3d;
+    --border-strong: #4b5657;
+    --accent: #1abc9c;
+    --accent-contrast: #00332a;
+    --code-bg: #2b3232;
+    --related: #f0a848;
+    --related-bg: #2f2a22;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+main { max-width: 72rem; margin: 0 auto; padding: 0 16px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+code, pre { font-family: "JuliaMono", ui-monospace, monospace; font-size: 0.85rem; }
+
+/* Hero: centred like the project pages */
+.hero { position: relative; text-align: center; padding: 2rem 0 3rem; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.tagline { margin: 0 auto 0.75rem; max-width: 40rem; font-size: 1.3rem; color: var(--text); text-wrap: balance; }
+.affil { margin: 0 0 1.75rem; color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+.btn {
+  display: inline-block; padding: 0.45rem 1.25rem; border-radius: 2rem;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  font-weight: 700;
+}
+.btn.brand { background: var(--accent); border-color: var(--accent); color: var(--accent-contrast); }
+.btn:hover { text-decoration: none; border-color: var(--accent); }
+
+section { padding: 2rem 0; }
+h2 { font-size: 1.6rem; margin: 0 0 0.5rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
+h3 { margin: 0; font-size: 1.05rem; }
+.lead { color: var(--muted); margin: 0 0 1.25rem; }
+
+/* Ecosystem graph */
+.graph { margin: 0; padding: 1rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); overflow-x: auto; }
+.graph pre.mermaid { margin: 0; background: none; text-align: center; font-family: inherit; }
+/* --graph-min-height: the space held for the graph before mermaid has drawn it (a site with a smaller graph sets it) */
+.graph pre.mermaid:not([data-processed]) { visibility: hidden; min-height: var(--graph-min-height, 30rem); }
+.graph svg { max-width: 100%; height: auto; }
+.graph .node.clickable, .graph a { cursor: pointer; }
+/* Nodes: compact boxes on the page background, icon beside the name,
+   following the colour scheme rather than mermaid's theme. */
+.graph .node rect { rx: 6px; ry: 6px; fill: var(--bg) !important; stroke: var(--border-strong) !important; stroke-width: 1px !important; }
+.graph .nodeLabel { display: inline-flex !important; align-items: center; gap: 8px; color: var(--text) !important; font-weight: 700; }
+.graph .nodeLabel p { display: inline-flex; align-items: center; gap: 8px; margin: 0; }
+.graph .nicon { display: block !important; width: 24px !important; height: 24px; flex: none !important; }
+.graph .labelBkg, .graph .nodeLabel p { background: transparent !important; }
+.graph a:hover .node rect, .graph .node.clickable:hover rect { stroke: var(--accent) !important; }
+/* Paper pills: dashed, venue in the accent colour */
+.graph .node.paper rect, .graph .node.paper path { fill: none !important; stroke: var(--accent) !important; stroke-dasharray: 4 3; }
+.graph .node.paper .nodeLabel { color: var(--accent) !important; font-weight: 700; font-size: 0.9em; }
+/* Related packages (maintained outside the toolkit): their own colour, never the toolkit's */
+.graph .node.related rect { fill: var(--related-bg) !important; stroke: var(--related) !important; stroke-width: 1.5px !important; }
+.graph .node.related .nodeLabel { color: var(--related) !important; }
+.graph a:hover .node.related rect, .graph .node.related.clickable:hover rect { stroke: var(--related) !important; stroke-width: 2.5px !important; }
+@media (max-width: 760px) {
+  /* Keep the graph legible on phones: it scrolls inside its frame. */
+  .graph svg { max-width: none !important; width: 760px; }
+}
+
+/* Cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 1rem; }
+.card {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface);
+}
+.card img { width: 56px; height: 56px; display: block; margin-bottom: 4px; }
+.card h3 { font-size: 1.2rem; font-weight: 600; }
+.card p { margin: 0; color: var(--muted); font-size: 0.93rem; }
+.card .links { margin-top: auto; padding-top: 6px; display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.9rem; font-weight: 600; }
+.card .venue { color: var(--accent); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.card .authors { font-size: 0.9rem; }
+
+/* BibTeX: a native toggle among the links; the entry opens below them */
+.card details.bibtex { display: contents; }
+.card details.bibtex > summary { list-style: none; color: var(--accent); cursor: pointer; }
+.card details.bibtex > summary::-webkit-details-marker { display: none; }
+.card details.bibtex > summary:focus-visible, .copy-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.reveal {
+  position: relative; flex-basis: 100%;
+  padding: 10px 12px; background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px;
+  font-weight: 400;
+}
+.reveal pre { margin: 0; padding-right: 30px; font-size: 0.75rem; line-height: 1.5; color: var(--text); white-space: pre-wrap; overflow-wrap: anywhere; }
+.copy-btn {
+  position: absolute; top: 8px; right: 8px;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; padding: 0; cursor: pointer;
+  color: var(--muted); background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+}
+.copy-btn:hover, .copy-btn[data-state="copied"] { color: var(--accent); border-color: var(--accent); }
+.copy-btn .icon-done, .copy-btn[data-state="copied"] .icon-copy { display: none; }
+.copy-btn[data-state="copied"] .icon-done { display: block; }
+
+/* Get started */
+.usecases { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr)); gap: 1rem; }
+.usecase h3 { margin-bottom: 0.5rem; }
+.usecase pre { margin: 0; padding: 0.9rem 1rem; background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px; overflow-x: auto; }
+.note { color: var(--muted); font-size: 0.92rem; margin-top: 1.25rem; }
+.note code, .card .install code { background: var(--code-bg); padding: 0.1rem 0.3rem; border-radius: 4px; overflow-wrap: anywhere; }
+
+footer { border-top: 1px solid var(--border); margin-top: 2rem; padding: 1.5rem 16px; text-align: center; color: var(--muted); font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .hero { padding: 1rem 0 2rem; }
+  .tagline { font-size: 1.1rem; }
+}

@@ -34,7 +34,7 @@ jobs:
           PORTAL_OUT: ${{ runner.temp }}/site
       - name: Landing page over the root redirect
         run: |
-          cp -r index.html style.css main.js icons .nojekyll "$RUNNER_TEMP/site/"
+          cp -r index.html style.css main.js shared icons .nojekyll "$RUNNER_TEMP/site/"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ runner.temp }}/site

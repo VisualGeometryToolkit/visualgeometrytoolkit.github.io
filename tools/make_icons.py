@@ -5,8 +5,10 @@ switched inside the file with prefers-color-scheme, so an icon works as an
 <img>, as a mermaid image node, and as the favicon. Icons derived from the
 project heroes embed downscaled PNG crops (light and dark where the hero has
 both)."""
-import base64, io, os, pathlib
+import base64, io, math, os, pathlib
 from PIL import Image
+
+from stack_icons import arrow, svg, write_icons   # the stack's tile, shared with the other toolkits' sites
 
 OUT = pathlib.Path(__file__).resolve().parent.parent / "icons"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -14,38 +16,9 @@ OUT.mkdir(parents=True, exist_ok=True)
 # crop (default ~/src; override with VGT_SRC).
 SRC = pathlib.Path(os.environ.get("VGT_SRC", pathlib.Path.home() / "src"))
 
-STYLE = """<style>
-.t{fill:#eef3f9;stroke:#d3deea}
-.s{fill:none;stroke:#2b5d7d;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
-.a{fill:none;stroke:#d4622a;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
-.d{stroke-dasharray:1 7}
-.fs{fill:#2b5d7d}.fa{fill:#d4622a}
-.dk{display:none}
-@media (prefers-color-scheme: dark){
-.t{fill:#1c2830;stroke:#304350}
-.s{stroke:#9ccbe8}.a{stroke:#f28c52}
-.fs{fill:#9ccbe8}.fa{fill:#f28c52}
-.lt{display:none}.dk{display:inline}
-}
-</style>"""
-
-def svg(body, title):
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img">'
-            f'<title>{title}</title>{STYLE}'
-            f'<rect class="t" x="2" y="2" width="92" height="92" rx="20" stroke-width="2"/>{body}</svg>\n')
-
-def arrow(x1, y1, x2, y2, cls="s", head=7):
-    import math
-    ang = math.atan2(y2 - y1, x2 - x1)
-    a1, a2 = ang + math.radians(150), ang - math.radians(150)
-    return (f'<path class="{cls}" d="M{x1},{y1} L{x2},{y2} '
-            f'M{x2 + head*math.cos(a1):.1f},{y2 + head*math.sin(a1):.1f} L{x2},{y2} '
-            f'L{x2 + head*math.cos(a2):.1f},{y2 + head*math.sin(a2):.1f}"/>')
-
 def frustum(ax, ay, cx, cy, half):
     """Side-view pinhole: apex, and an image plane of half-width `half`
     perpendicular to the axis apex->(cx, cy)."""
-    import math
     dx, dy = cx - ax, cy - ay
     n = math.hypot(dx, dy); px, py = -dy / n, dx / n
     p1 = (cx + half*px, cy + half*py); p2 = (cx - half*px, cy - half*py)
@@ -74,7 +47,6 @@ icons["vgio"] = ("VisualGeometryToolkitIO.jl",
 # VisualGeometryToolkitFeatures: keypoints with scale circles and orientations
 kp = [(37, 39, 15, 0.6), (66, 63, 11, -2.2), (68, 29, 7, 2.6), (30, 72, 8, 1.2)]
 body = ""
-import math
 for x, y, r, th in kp:
     body += f'<circle class="s" cx="{x}" cy="{y}" r="{r}"/>'
     body += f'<path class="s" d="M{x},{y} L{x + r*math.cos(th):.1f},{y + r*math.sin(th):.1f}"/>'
@@ -112,8 +84,7 @@ icons["panorama"] = ("PanoramaStitching.jl",
     + '<circle class="fs" cx="48" cy="84" r="4"/>'
     + '<path class="a" d="M16,52 L25,43 L31,47 L41,34 L50,44 L57,38 L66,46 L73,40 L81,49"/>')
 
-for key, (title, body) in icons.items():
-    (OUT / f"{key}.svg").write_text(svg(body, title))
+write_icons(icons, OUT)
 
 # Hero-derived icons
 def b64png(im, size=176):
