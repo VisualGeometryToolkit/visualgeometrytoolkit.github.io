@@ -20,7 +20,7 @@
 # Portal paths are the package names without ".jl", so they never collide with
 # GitHub project pages (<org>.github.io/<Repo>.jl/).
 
-using MultiDocumenter
+include(joinpath(@__DIR__, "stack_portal.jl"))   # portal_pages, portal_docs, portal_out, make_portal: shared with the other toolkits' sites
 
 const MONOREPO = "https://github.com/VisualGeometryToolkit/VisualGeometryToolkit.jl.git"
 const WORKSPACE = ["VisualGeometryToolkitCore", "VisualGeometryToolkitIO", "VisualGeometryToolkitFeatures",
@@ -39,20 +39,9 @@ site_url(p) = "https://$(lowercase(p)).github.io/"
 const PORTAL_PATH = Dict("RANSACScoringDoneRight" => "RansacScoringDoneRight")
 portal_path(p) = get(PORTAL_PATH, p, p)
 
-pages = get(ENV, "PORTAL_LOCAL", "")
-if isempty(pages)
-    pages = mktempdir()
-    run(`git clone --depth 1 --branch gh-pages $MONOREPO $pages`)
-end
-
-docs = MultiDocumenter.DropdownComponent[]
-for p in WORKSPACE
-    isdir(joinpath(pages, p)) || (@warn "no docs for $p under $pages"; continue)
-    push!(docs, MultiDocumenter.MultiDocRef(; upstream = joinpath(pages, p), path = p, name = p))
-end
-foreach(p -> push!(docs, MultiDocumenter.Link(p, site_url(p))), EXTERNAL)
-
-outpath = get(ENV, "PORTAL_OUT", joinpath(@__DIR__, "out"))
+pages = portal_pages(MONOREPO)
+docs = portal_docs(pages, WORKSPACE, [p => site_url(p) for p in EXTERNAL])
+outpath = portal_out(joinpath(@__DIR__, "out"))
 
 # /<Project>/<path> → <project site>/<path>, one redirect page per HTML page the
 # project site has (read from its repository), so old portal links land on the
@@ -116,13 +105,7 @@ function write_rename_redirects(outpath, pages, old, new)
     @info "$old: $n redirect pages to $base"
 end
 
-MultiDocumenter.make(
-    outpath, docs;
-    search_engine = MultiDocumenter.SearchConfig(index_versions = ["stable", "dev"], engine = MultiDocumenter.FlexSearch),
-    rootpath = "/",
-    canonical_domain = "https://visualgeometrytoolkit.github.io/",
-    sitemap = true,
-)
+make_portal(outpath, docs; canonical_domain = "https://visualgeometrytoolkit.github.io/")
 
 get(ENV, "PORTAL_NO_EXTERNAL", "") == "1" || foreach(p -> write_redirects(outpath, p), EXTERNAL)
 foreach(((old, new),) -> write_rename_redirects(outpath, pages, old, new), RENAMED)

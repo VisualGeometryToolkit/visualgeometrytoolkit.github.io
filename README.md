@@ -26,6 +26,7 @@ takes these files from here at a pinned commit and keeps no copy:
 | `tools/stack_icons.py` | the icon tile: its style, `svg`, `arrow`, `write_icons` |
 | `tools/stack_social_card.py` | the link-preview card: `social_card` |
 | `tools/pixi.toml`, `tools/pixi.lock` | the Python environment the generators run in |
+| `portal/stack_portal.jl`, `portal/Project.toml` | the documentation portal: the docs store, the navigation bar and the MultiDocumenter build (`portal_pages`, `portal_docs`, `make_portal`), and its environment |
 | `icons/vgt_logo.svg`, `icons/radiometric.svg` | the canonical copies of the icons other sites show |
 
 `index.html` links `shared/base.css` and then `style.css`, and loads
