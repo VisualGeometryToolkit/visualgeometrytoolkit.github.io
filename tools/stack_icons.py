@@ -2,6 +2,8 @@
 colours switched inside the file with prefers-color-scheme, so an icon works as an <img>, as a mermaid image node
 and as the favicon.
 
+The tile itself is transparent (no fill, no border), so an icon sits on whatever background the page has, light or dark.
+
 A site's make_icons.py defines its icons as data — `icons[key] = (title, body)`, the body drawn with the classes of
 STYLE (.s the structure stroke, .a the accent stroke, .fs and .fa their fills, .d dashed, .lt and .dk the light-only
 and dark-only parts) — and calls `write_icons(icons, out)`. Another toolkit's site imports this module from this
@@ -9,14 +11,13 @@ repository at a pinned commit and never keeps a copy."""
 import math
 
 STYLE = """<style>
-.t{fill:#eef3f9;stroke:#d3deea}
+.t{fill:none;stroke:none}
 .s{fill:none;stroke:#2b5d7d;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
 .a{fill:none;stroke:#d4622a;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
 .d{stroke-dasharray:1 7}
 .fs{fill:#2b5d7d}.fa{fill:#d4622a}
 .dk{display:none}
 @media (prefers-color-scheme: dark){
-.t{fill:#1c2830;stroke:#304350}
 .s{stroke:#9ccbe8}.a{stroke:#f28c52}
 .fs{fill:#9ccbe8}.fa{fill:#f28c52}
 .lt{display:none}.dk{display:inline}

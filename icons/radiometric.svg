@@ -1,11 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img"><title>Real Cameras are Radiometric</title><style>
-.t{fill:#eef3f9;stroke:#d3deea}
+.t{fill:none;stroke:none}
 .s{fill:none;stroke:#2b5d7d;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
 .a{fill:none;stroke:#d4622a;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
 .r{stroke-width:2.4}
 .fs{fill:#2b5d7d}.fa{fill:#d4622a}
 @media (prefers-color-scheme: dark){
-.t{fill:#1c2830;stroke:#304350}
 .s{stroke:#9ccbe8}.a{stroke:#f28c52}
 .fs{fill:#9ccbe8}.fa{fill:#f28c52}
 }
