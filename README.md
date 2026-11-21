@@ -1,7 +1,7 @@
 # visualgeometrytoolkit.github.io
 
 The landing page of the [Visual Geometry Toolkit](https://visualgeometrytoolkit.github.io):
-Julia packages for multi-view geometry from Marine Data Science, Kiel University.
+Julia packages for multi-view geometry.
 
 The landing page is plain static HTML, CSS and JavaScript; the Portal workflow
 places it at the root of the published site (see below). The ecosystem graph is rendered in the browser by a pinned
